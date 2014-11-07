@@ -91,20 +91,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def updateGUI( self ):
         #Update opponents
-        __sortingEnabled = self.treeWidget.isSortingEnabled()
-        self.treeWidget.setSortingEnabled(False)
+        self.opponentTree.setSortingEnabled(False)
         for opponent in self.opponentData:
-            opponentItem =  TreeWidgetItem(self.treeWidget)
+            opponentItem =  TreeWidgetItem(self.opponentTree)
             opponentItem.setText(0, opponent)
             opponentItem.setText(1, unicode(self.opponentData[opponent]["Win"]))
             opponentItem.setText(2, unicode(self.opponentData[opponent]["Loss"]))
             opponentItem.setText(3, unicode(self.opponentData[opponent]["Draw"]))
             opponentItem.setText(4, unicode(self.opponentData[opponent]["Win"]+self.opponentData[opponent]["Loss"]+self.opponentData[opponent]["Draw"]))
             
-            self.treeWidget.addTopLevelItem(opponentItem)
+            self.opponentTree.addTopLevelItem(opponentItem)
         
-        self.treeWidget.setSortingEnabled(__sortingEnabled)
-                        
+        self.opponentTree.setSortingEnabled(True)
+        
+        #Update events
+        self.eventTree.setSortingEnabled(False)
+        for eventId in self.eventData:
+            eventItem = TreeWidgetItem(self.eventTree)
+            eventItem.setText(0, eventId)
+            eventItem.setText(1, unicode(self.eventData[eventId]["Place"]))
+            eventItem.setText(2, unicode(self.eventData[eventId]["Type"]))
+            eventItem.setText(3, unicode(self.eventData[eventId]["Players"]))
+            eventItem.setText(4, unicode(self.eventData[eventId]["Format"]))
+            eventItem.setText(5, unicode(self.eventData[eventId]["Location"]))
+            eventItem.setText(6, unicode(self.eventData[eventId]["Date"]))
+            eventItem.setText(7, unicode(self.eventData[eventId]["Wins"]))
+            eventItem.setText(8, unicode(self.eventData[eventId]["Losses"]))
+            eventItem.setText(9, unicode(self.eventData[eventId]["Draws"]))
+            
+            self.eventTree.addTopLevelItem(eventItem)
+        
+        self.eventTree.setSortingEnabled(True)
+        
     def addMatch( self, opponent, result ):
         """opponent is the opponent's name and result should be Win/Loss/Draw"""
         
