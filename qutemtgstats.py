@@ -185,7 +185,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         #Find opponents and events that meet our applied filters
         for eventId in self.eventData:
-            if self.checkEvent(eventId) and self.checkFormat(self.eventData[eventId]["Format"]) and self.checkDate(self.eventData[eventId]["Date"]):
+            if self.checkEvent(self.eventData[eventId]["Type"]) and self.checkFormat(self.eventData[eventId]["Format"]) and self.checkDate(self.eventData[eventId]["Date"]):
                 self.filteredEventData.append(eventId)
                 ourEvent = self.eventData[eventId]
                 ourType = ourEvent["Type"]
