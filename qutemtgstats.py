@@ -13,7 +13,7 @@ import os
 import platform
 import datetime
 
-def checkDate(date_text):
+def isDate(date_text):
     try:
         datetime.datetime.strptime(date_text, '%Y-%m-%d')
         return True
@@ -29,21 +29,80 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+        
         self.eventData = {}
         self.opponentData = {}
+        self.filteredEventData = []
+        
+        self.selectedEvents = [ "Magic Pro Tour",
+                                "Magic Pro Tour Qualifier",
+                                "World Magic Cup Qualifier",
+                                "8 players Side Events",
+                                "Magic Celebration",
+                                "Magic Tournament",
+                                "Magic Grand Prix Trial",
+                                "Magic Casual Event",
+                                "Magic Prerelease",
+                                "Magic WPN Premium Tournament",
+                                "Magic Game Day",
+                                "Public Event at Grand Prix",
+                                "Magic Grand Prix",
+                                "Friday Night Magic",
+                                "Other"]
+        self.selectedFormats = ["Standard",
+                                "Modern",
+                                "Legacy",
+                                "Vintage",
+                                "Booster Draft",
+                                "Sealed",
+                                "2 HG Sealed",
+                                "Casual - Constructed",
+                                "Casual - Limited",
+                                "Other"]
+                                
+        self.masterEvents = [   "Magic Pro Tour",
+                                "Magic Pro Tour Qualifier",
+                                "World Magic Cup Qualifier",
+                                "8 players Side Events",
+                                "Magic Celebration",
+                                "Magic Tournament",
+                                "Magic Grand Prix Trial",
+                                "Magic Casual Event",
+                                "Magic Prerelease",
+                                "Magic WPN Premium Tournament",
+                                "Magic Game Day",
+                                "Public Event at Grand Prix",
+                                "Magic Grand Prix",
+                                "Friday Night Magic"]
+        self.masterFormats = [  "Standard",
+                                "Modern",
+                                "Legacy",
+                                "Vintage",
+                                "Booster Draft",
+                                "Sealed",
+                                "2 HG Sealed",
+                                "Casual - Constructed",
+                                "Casual - Limited"]
+                                
+        self.dates = {  "starting":"1991-01-01",
+                        "ending":"2015-12-31" }
+        
         self.assignWidgets()
     
     def phrasePressed( self ):
         self.rawData = self.statsPaste.toPlainText().split("\n")
         
         self.formatData()
+    
+    def updateFiltersPressed( self ):
+        self.updateFilteredData()
         
     def formatData( self ):
         eventBreaks = []
         numberOfRows = len(self.rawData)
         
         for row in range(numberOfRows):
-            if checkDate(self.rawData[row-1][:10]):
+            if isDate(self.rawData[row-1][:10]):
                 eventBreaks.append(row-1)
         
         for event in eventBreaks:
@@ -61,6 +120,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             eventFormat = self.rawData[startingRow+EventFormat].split(":")[1].lstrip()
             eventLocation = self.rawData[startingRow+EventLocation].split(":")[1].lstrip()
             eventDate = self.rawData[startingRow+EventDate][:10]
+            eventOpponents = []
             eventWins = 0
             eventLosses = 0
             eventDraws = 0
@@ -69,12 +129,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 ourRound = self.rawData[row].split("\t")
                 if len(ourRound) == 4:
                     if len(ourRound[3]):
-                        self.addMatch(ourRound[3], ourRound[1])
                         if ourRound[1] == "Win":
+                            eventOpponents.append([ourRound[3], "Win"])
                             eventWins += 1
                         elif ourRound[1] == "Loss":
+                            eventOpponents.append([ourRound[3], "Loss"])
                             eventLosses += 1
                         elif ourRound[1] == "Draw":
+                            eventOpponents.append([ourRound[3], "Draw"])
                             eventDraws += 1
                         
             self.eventData[eventId] = { "Place":eventPlace,
@@ -83,15 +145,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                         "Format":eventFormat,
                                         "Location":eventLocation,
                                         "Date":eventDate,
+                                        "Opponents":eventOpponents,
                                         "Wins":eventWins,
                                         "Losses":eventLosses,
                                         "Draws":eventDraws}
-                                        
+                        
+        self.updateFilteredData()
+        
+    def updateFilteredData( self ):
+        self.filteredEventData = []
+        self.opponentData = {}
+        
+        for eventId in self.eventData:
+            if self.checkEvent(eventId) and self.checkFormat(self.eventData[eventId]["Format"]) and self.checkDate(self.eventData[eventId]["Date"]):
+                self.filteredEventData.append(eventId)
+                for opponent in self.eventData[eventId]["Opponents"]:
+                    self.addMatch( self.eventData[eventId]["Opponents"][self.eventData[eventId]["Opponents"].index(opponent)][0], self.eventData[eventId]["Opponents"][self.eventData[eventId]["Opponents"].index(opponent)][1] )
+        
         self.updateGUI()
         
     def updateGUI( self ):
         #Update opponents
         self.opponentTree.setSortingEnabled(False)
+        self.opponentTree.clear()
         for opponent in self.opponentData:
             opponentItem =  TreeWidgetItem(self.opponentTree)
             opponentItem.setText(0, opponent)
@@ -106,7 +182,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         #Update events
         self.eventTree.setSortingEnabled(False)
-        for eventId in self.eventData:
+        self.eventTree.clear()
+        for eventId in self.filteredEventData:
             eventItem = TreeWidgetItem(self.eventTree)
             eventItem.setText(0, eventId)
             eventItem.setText(1, unicode(self.eventData[eventId]["Place"]))
@@ -118,6 +195,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             eventItem.setText(7, unicode(self.eventData[eventId]["Wins"]))
             eventItem.setText(8, unicode(self.eventData[eventId]["Losses"]))
             eventItem.setText(9, unicode(self.eventData[eventId]["Draws"]))
+            eventItem.setText(10, unicode(str(self.eventData[eventId]["Opponents"])))
             
             self.eventTree.addTopLevelItem(eventItem)
         
@@ -132,10 +210,92 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                             "Draw":0}
         
         self.opponentData[opponent][result] += 1
+        
+    def checkDate( self, eventDate ):
+        eventDateFormatted = datetime.datetime.strptime(eventDate, "%Y-%m-%d")
+        startingDateFormatted = datetime.datetime.strptime(self.dates["starting"], "%Y-%m-%d")
+        endingDateFormatted = datetime.datetime.strptime(self.dates["ending"], "%Y-%m-%d")
+        
+        if eventDateFormatted >= startingDateFormatted and eventDateFormatted <= endingDateFormatted:
+            return True
+        else:
+            return False
+        
+    def checkEvent( self, eventType ):
+        if eventType in self.masterEvents:
+            if eventType in self.selectedEvents:
+                return True
+            else:
+                return False
+        else:
+            if "Other" in self.selectedEvents:
+                return True
+            else:
+                return False
+    
+    def checkFormat( self, formatType ):
+        if formatType in self.masterFormats:
+            if formatType in self.selectedFormats:
+                return True
+            else:
+                return False
+        else:
+            if "Other" in self.selectedFormats:
+                return True
+            else:
+                return False
     
     def assignWidgets( self ):
         self.phraseButton.clicked.connect(self.phrasePressed)
+        self.updateFiltersButton.clicked.connect(self.updateFiltersPressed)
+        
+        #Assign our many check boxes for filters
+        self.CelebrationFilter.stateChanged.connect(lambda: self.checkChanged(self.CelebrationFilter, "event"))
+        self.EightManFilter.stateChanged.connect(lambda: self.checkChanged(self.EightManFilter, "event"))
+        self.FNMFilter.stateChanged.connect(lambda: self.checkChanged(self.FNMFilter, "event"))
+        self.GPTFilter.stateChanged.connect(lambda: self.checkChanged(self.GPTFilter, "event"))
+        self.PTQFilter.stateChanged.connect(lambda: self.checkChanged(self.PTQFilter, "event"))
+        self.WMCQFilter.stateChanged.connect(lambda: self.checkChanged(self.WMCQFilter, "event"))
+        self.gameDayFilter.stateChanged.connect(lambda: self.checkChanged(self.gameDayFilter, "event"))
+        self.gpSideEventFilter.stateChanged.connect(lambda: self.checkChanged(self.gpSideEventFilter, "event"))
+        self.grandPrixFilter.stateChanged.connect(lambda: self.checkChanged(self.grandPrixFilter, "event"))
+        self.otherEventFilter.stateChanged.connect(lambda: self.checkChanged(self.otherEventFilter, "event"))
+        self.premiumTournamentFilter.stateChanged.connect(lambda: self.checkChanged(self.premiumTournamentFilter, "event"))
+        self.prereleaseFilter.stateChanged.connect(lambda: self.checkChanged(self.prereleaseFilter, "event"))
+        self.proTourFilter.stateChanged.connect(lambda: self.checkChanged(self.proTourFilter, "event"))
+        self.tournamentFilter.stateChanged.connect(lambda: self.checkChanged(self.tournamentFilter, "event"))
+        
+        self.boosterDraftFilter.stateChanged.connect(lambda: self.checkChanged(self.boosterDraftFilter, "format"))
+        self.casualConFilter.stateChanged.connect(lambda: self.checkChanged(self.casualConFilter, "format"))
+        self.casualLimFilter.stateChanged.connect(lambda: self.checkChanged(self.casualLimFilter, "format"))
+        self.legacyFilter.stateChanged.connect(lambda: self.checkChanged(self.legacyFilter, "format"))
+        self.modernFilter.stateChanged.connect(lambda: self.checkChanged(self.modernFilter, "format"))
+        self.otherFormatFilter.stateChanged.connect(lambda: self.checkChanged(self.otherFormatFilter, "format"))
+        self.sealedFilter.stateChanged.connect(lambda: self.checkChanged(self.sealedFilter, "format"))
+        self.standardFilter.stateChanged.connect(lambda: self.checkChanged(self.standardFilter, "format"))
+        self.twoHGSealedFilter.stateChanged.connect(lambda: self.checkChanged(self.twoHGSealedFilter, "format"))
+        self.vintageFilter.stateChanged.connect(lambda: self.checkChanged(self.vintageFilter, "format"))
+        
+        #Callback for calendars
+        self.startingDate.selectionChanged.connect(lambda: self.dateChanged(self.startingDate, "starting"))
+        self.endingDate.selectionChanged.connect(lambda: self.dateChanged(self.endingDate, "ending"))
+    
+    def dateChanged( self, ourCalendar, dateType ):
+        self.dates[dateType] = ourCalendar.selectedDate().toString("yyyy-MM-dd")
+        
+    def checkChanged( self, ourCheck, checkType ):
+        if ourCheck.checkState() == Qt.Checked:
+            if checkType == "event":
+                self.selectedEvents.append(ourCheck.toolTip())
+            elif checkType == "format":
+                self.selectedFormats.append(ourCheck.toolTip())
+        else:
+            if checkType == "event":
+                self.selectedEvents.remove(ourCheck.toolTip())
+            elif checkType == "format":
+                self.selectedFormats.remove(ourCheck.toolTip())
 
+#Custom object to allow sorting by number and alpha
 class TreeWidgetItem( QTreeWidgetItem ):
     def __init__(self, parent=None):
         QTreeWidgetItem.__init__(self, parent)

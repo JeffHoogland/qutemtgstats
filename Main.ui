@@ -89,6 +89,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="standardFilter">
+                <property name="toolTip">
+                 <string>Standard</string>
+                </property>
                 <property name="text">
                  <string>Standard</string>
                 </property>
@@ -99,6 +102,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="modernFilter">
+                <property name="toolTip">
+                 <string>Modern</string>
+                </property>
                 <property name="text">
                  <string>Modern</string>
                 </property>
@@ -109,6 +115,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="legacyFilter">
+                <property name="toolTip">
+                 <string>Legacy</string>
+                </property>
                 <property name="text">
                  <string>Legacy</string>
                 </property>
@@ -119,6 +128,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="vintageFilter">
+                <property name="toolTip">
+                 <string>Vintage</string>
+                </property>
                 <property name="text">
                  <string>Vintage</string>
                 </property>
@@ -129,6 +141,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="boosterDraftFilter">
+                <property name="toolTip">
+                 <string>Booster Draft</string>
+                </property>
                 <property name="text">
                  <string>Booster Draft</string>
                 </property>
@@ -139,6 +154,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="sealedFilter">
+                <property name="toolTip">
+                 <string>Sealed</string>
+                </property>
                 <property name="text">
                  <string>Sealed</string>
                 </property>
@@ -149,6 +167,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="twoHGSealedFilter">
+                <property name="toolTip">
+                 <string>2 HG Sealed</string>
+                </property>
                 <property name="text">
                  <string>2 HG Sealed</string>
                 </property>
@@ -158,9 +179,25 @@
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="casualFilter">
+               <widget class="QCheckBox" name="casualConFilter">
+                <property name="toolTip">
+                 <string>Casual - Constructed</string>
+                </property>
                 <property name="text">
-                 <string>Casual</string>
+                 <string>Casual - Con</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="casualLimFilter">
+                <property name="toolTip">
+                 <string>Casual - Limited</string>
+                </property>
+                <property name="text">
+                 <string>Casual - Lim</string>
                 </property>
                 <property name="checked">
                  <bool>true</bool>
@@ -169,6 +206,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="otherFormatFilter">
+                <property name="toolTip">
+                 <string>Other</string>
+                </property>
                 <property name="text">
                  <string>Other</string>
                 </property>
@@ -198,6 +238,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="premiumTournamentFilter">
+                <property name="toolTip">
+                 <string>Magic WPN Premium Tournament</string>
+                </property>
                 <property name="text">
                  <string>Premium Tournament</string>
                 </property>
@@ -208,6 +251,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="grandPrixFilter">
+                <property name="toolTip">
+                 <string>Magic Grand Prix</string>
+                </property>
                 <property name="text">
                  <string>Grand Prix</string>
                 </property>
@@ -218,6 +264,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="proTourFilter">
+                <property name="toolTip">
+                 <string>Magic Pro Tour</string>
+                </property>
                 <property name="text">
                  <string>Pro Tour</string>
                 </property>
@@ -228,6 +277,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="PTQFilter">
+                <property name="toolTip">
+                 <string>Magic Pro Tour Qualifier</string>
+                </property>
                 <property name="text">
                  <string>Pro Tour Qualifier</string>
                 </property>
@@ -238,6 +290,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="gameDayFilter">
+                <property name="toolTip">
+                 <string>Magic Game Day</string>
+                </property>
                 <property name="text">
                  <string>Game Day</string>
                 </property>
@@ -248,6 +303,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="prereleaseFilter">
+                <property name="toolTip">
+                 <string>Magic Prerelease</string>
+                </property>
                 <property name="text">
                  <string>Prerelease</string>
                 </property>
@@ -258,6 +316,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="tournamentFilter">
+                <property name="toolTip">
+                 <string>Magic Tournament</string>
+                </property>
                 <property name="text">
                  <string>Tournament</string>
                 </property>
@@ -268,6 +329,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="GPTFilter">
+                <property name="toolTip">
+                 <string>Magic Grand Prix Trial</string>
+                </property>
                 <property name="text">
                  <string>Grand Prix Trial</string>
                 </property>
@@ -278,6 +342,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="FNMFilter">
+                <property name="toolTip">
+                 <string>Friday Night Magic</string>
+                </property>
                 <property name="text">
                  <string>Friday Night Magic</string>
                 </property>
@@ -288,6 +355,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="WMCQFilter">
+                <property name="toolTip">
+                 <string>World Magic Cup Qualifier</string>
+                </property>
                 <property name="text">
                  <string>WMCQ</string>
                 </property>
@@ -298,6 +368,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="EightManFilter">
+                <property name="toolTip">
+                 <string>8 players Side Events</string>
+                </property>
                 <property name="text">
                  <string>8 players Side Events</string>
                 </property>
@@ -308,6 +381,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="CelebrationFilter">
+                <property name="toolTip">
+                 <string>Magic Celebration</string>
+                </property>
                 <property name="text">
                  <string>Magic Celebration</string>
                 </property>
@@ -318,6 +394,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="gpSideEventFilter">
+                <property name="toolTip">
+                 <string>Public Event at Grand Prix</string>
+                </property>
                 <property name="text">
                  <string>GP Side Event</string>
                 </property>
@@ -328,6 +407,9 @@
               </item>
               <item>
                <widget class="QCheckBox" name="otherEventFilter">
+                <property name="toolTip">
+                 <string>Other</string>
+                </property>
                 <property name="text">
                  <string>Other</string>
                 </property>
@@ -405,7 +487,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="updateFilters">
+         <widget class="QPushButton" name="updateFiltersButton">
           <property name="text">
            <string>Apply Filters</string>
           </property>
@@ -477,6 +559,11 @@
           <column>
            <property name="text">
             <string>Draws</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Opponents</string>
            </property>
           </column>
          </widget>
