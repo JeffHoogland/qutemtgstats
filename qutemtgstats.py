@@ -232,6 +232,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.opponentTree.addTopLevelItem(opponentItem)
         
         self.opponentTree.setSortingEnabled(True)
+        self.opponentTree.resizeColumnToContents(0)
         
         #Update events
         self.eventTree.setSortingEnabled(False)
@@ -253,6 +254,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.eventTree.addTopLevelItem(eventItem)
         
         self.eventTree.setSortingEnabled(True)
+        for i in range(11):
+            self.eventTree.resizeColumnToContents(i)
         
         #Update stats by format
         self.standardRecord.setText("<p><b>Overall Record:</b></p> <p>%s-%s-%s</p>"%(self.statsFormats["Standard"]["Wins"], self.statsFormats["Standard"]["Losses"], self.statsFormats["Standard"]["Draws"]))
