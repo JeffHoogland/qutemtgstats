@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Main.ui'
 #
-# Created: Fri Nov  7 01:34:44 2014
+# Created: Mon Nov 10 09:37:05 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -205,7 +205,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1420, 539))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1420, 502))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.horizontalLayout_5 = QtGui.QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
@@ -401,6 +401,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.addWidget(self.otherFrame)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_6.addWidget(self.scrollArea)
+        self.exportStats = QtGui.QPushButton(self.formatTab)
+        self.exportStats.setObjectName("exportStats")
+        self.verticalLayout_6.addWidget(self.exportStats)
         self.tabWidget.addTab(self.formatTab, "")
         self.eventTab = QtGui.QWidget()
         self.eventTab.setObjectName("eventTab")
@@ -410,7 +413,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(-440, 0, 1422, 539))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 1422, 502))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.horizontalLayout_6 = QtGui.QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
@@ -606,6 +609,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.addWidget(self.otherEventFrame)
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
         self.verticalLayout_27.addWidget(self.scrollArea_2)
+        self.exportStats_2 = QtGui.QPushButton(self.eventTab)
+        self.exportStats_2.setObjectName("exportStats_2")
+        self.verticalLayout_27.addWidget(self.exportStats_2)
         self.tabWidget.addTab(self.eventTab, "")
         self.horizontalLayout.addWidget(self.tabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -619,7 +625,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Qute MTG Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:600;\">Paste Data Below:</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.phraseButton.setText(QtGui.QApplication.translate("MainWindow", "Phrase Data and Generate Stats", None, QtGui.QApplication.UnicodeUTF8))
+        self.phraseButton.setText(QtGui.QApplication.translate("MainWindow", "Prase Data and Generate Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.dataTab), QtGui.QApplication.translate("MainWindow", "Raw Data", None, QtGui.QApplication.UnicodeUTF8))
         self.formatLabel.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p><span style=\" font-size:16pt;\">Formats:</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.standardFilter.setToolTip(QtGui.QApplication.translate("MainWindow", "Standard", None, QtGui.QApplication.UnicodeUTF8))
@@ -726,6 +732,7 @@ class Ui_MainWindow(object):
         self.otherRecord.setText(QtGui.QApplication.translate("MainWindow", "Total Record", None, QtGui.QApplication.UnicodeUTF8))
         self.otherMatches.setText(QtGui.QApplication.translate("MainWindow", "Total Matches", None, QtGui.QApplication.UnicodeUTF8))
         self.otherWinPercent.setText(QtGui.QApplication.translate("MainWindow", "Win %", None, QtGui.QApplication.UnicodeUTF8))
+        self.exportStats.setText(QtGui.QApplication.translate("MainWindow", "Export Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.formatTab), QtGui.QApplication.translate("MainWindow", "Stats by Format", None, QtGui.QApplication.UnicodeUTF8))
         self.label_24.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600;\">Pro Tour:</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.proTourRecord.setText(QtGui.QApplication.translate("MainWindow", "Total Record", None, QtGui.QApplication.UnicodeUTF8))
@@ -767,6 +774,7 @@ class Ui_MainWindow(object):
         self.otherEventRecord.setText(QtGui.QApplication.translate("MainWindow", "Total Record", None, QtGui.QApplication.UnicodeUTF8))
         self.otherEventMatches.setText(QtGui.QApplication.translate("MainWindow", "Total Matches", None, QtGui.QApplication.UnicodeUTF8))
         self.otherEventWinPercent.setText(QtGui.QApplication.translate("MainWindow", "Win %", None, QtGui.QApplication.UnicodeUTF8))
+        self.exportStats_2.setText(QtGui.QApplication.translate("MainWindow", "Export Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.eventTab), QtGui.QApplication.translate("MainWindow", "Stats by Event Type", None, QtGui.QApplication.UnicodeUTF8))
         self.actionMenu_Item.setText(QtGui.QApplication.translate("MainWindow", "Menu Item", None, QtGui.QApplication.UnicodeUTF8))
 

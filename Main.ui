@@ -51,7 +51,7 @@
         <item>
          <widget class="QPushButton" name="phraseButton">
           <property name="text">
-           <string>Phrase Data and Generate Stats</string>
+           <string>Prase Data and Generate Stats</string>
           </property>
          </widget>
         </item>
@@ -576,7 +576,7 @@
              <x>0</x>
              <y>0</y>
              <width>1420</width>
-             <height>539</height>
+             <height>502</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -984,6 +984,13 @@
           </widget>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="exportStats">
+          <property name="text">
+           <string>Export Stats</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="eventTab">
@@ -999,10 +1006,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>-440</x>
+             <x>0</x>
              <y>0</y>
              <width>1422</width>
-             <height>539</height>
+             <height>502</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -1408,6 +1415,13 @@
             </item>
            </layout>
           </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="exportStats_2">
+          <property name="text">
+           <string>Export Stats</string>
+          </property>
          </widget>
         </item>
        </layout>
