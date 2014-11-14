@@ -1,6 +1,6 @@
 #!/bin/bash
-rm ui_*.py
-rm ui_*.pyc
-pyside-uic Main.ui > ui_Main.py
-pyside-uic ExportStats.ui > ui_ExportStats.py
-pyside-uic Event.ui > ui_Event.py
+rm Code/ui_*.py
+rm Code/ui_*.pyc
+pyside-uic UIs/Main.ui > Code/ui_Main.py
+pyside-uic UIs/ExportStats.ui > Code/ui_ExportStats.py
+pyside-uic UIs/Event.ui > Code/ui_Event.py
