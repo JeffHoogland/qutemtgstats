@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Main.ui'
 #
-# Created: Fri Nov 14 20:39:35 2014
+# Created: Fri Nov 14 21:57:07 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -684,7 +684,6 @@ class Ui_MainWindow(object):
         self.eventTree.headerItem().setText(8, QtGui.QApplication.translate("MainWindow", "Wins", None, QtGui.QApplication.UnicodeUTF8))
         self.eventTree.headerItem().setText(9, QtGui.QApplication.translate("MainWindow", "Losses", None, QtGui.QApplication.UnicodeUTF8))
         self.eventTree.headerItem().setText(10, QtGui.QApplication.translate("MainWindow", "Draws", None, QtGui.QApplication.UnicodeUTF8))
-        self.eventTree.headerItem().setText(11, QtGui.QApplication.translate("MainWindow", "Opponents", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.eventListTab), QtGui.QApplication.translate("MainWindow", "Event List", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentTree.setSortingEnabled(True)
         self.opponentTree.headerItem().setText(0, QtGui.QApplication.translate("MainWindow", "Opponent", None, QtGui.QApplication.UnicodeUTF8))

@@ -168,19 +168,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if len(ourRound) == 4:
                     if len(ourRound[3]):
                         if ourRound[1] == "Win":
-                            eventOpponents.append([ourRound[3], "Win", ""])
                             eventWins += 1
                         elif ourRound[1] == "Loss":
-                            eventOpponents.append([ourRound[3], "Loss", ""])
                             eventLosses += 1
                         elif ourRound[1] == "Draw":
-                            eventOpponents.append([ourRound[3], "Draw", ""])
                             eventDraws += 1
+                        #Name, result, deck, TreeWidgetItem object
+                        eventOpponents.append([ourRound[3], ourRound[1], "", None])
             
             eventMatches = eventWins + eventLosses + eventDraws
             
             self.eventData[eventId] = { "ID":eventId,
-										"Place":eventPlace,
+                                        "Place":eventPlace,
                                         "Type":eventType,
                                         "Players":eventPlayers,
                                         "Format":eventFormat,
@@ -263,7 +262,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             eventItem.setText(8, unicode(self.eventData[eventId]["Wins"]))
             eventItem.setText(9, unicode(self.eventData[eventId]["Losses"]))
             eventItem.setText(10, unicode(self.eventData[eventId]["Draws"]))
-            eventItem.setText(11, unicode(str(self.eventData[eventId]["Opponents"])))
             
             self.eventTree.addTopLevelItem(eventItem)
         
