@@ -1,24 +1,6 @@
-#How many lines after the data we find certain data
-EventDate = 0
-EventType = 1
-EventPlayers = 3
-EventFormat = 5
-EventLocation = 6
-EventPlace = 7
-EventID = 8
-EventHistory = 10
-
 import sys
 import os
 import platform
-import datetime
-
-def isDate(date_text):
-    try:
-        datetime.datetime.strptime(date_text, '%Y-%m-%d')
-        return True
-    except ValueError:
-        return False
 
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -28,16 +10,33 @@ from ui_Main import Ui_MainWindow
 #Dialog windows broken out into seperate files to manage things easier
 from ExportStatsWindow import ExportStatsWindow
 from EventWindow import EventWindow
+from PasteWindow import PasteWindow
+#from EventStatsWindow import EventStatsWindow
+#from FormatStatsWindow import FormatStatsWindow
+#from EventListWindow import EventListWindow
+#from OpponentListWindow import OpponentListWindow
+#from FiltersWindow import FiltersWindow
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
+        self.dataLoaded = False
         self.setupUi(self)
         self.exportWindow = ExportStatsWindow( self )
+        self.pasteWindow = PasteWindow( self )
+        #self.eventStatsWindow = EventStatsWindow( self )
+        #self.formatStatsWindow = FormatStatsWindow( self )
+        #self.eventListWindow = EventListWindow( self )
+        #self.opponentListWindow = OpponentListWindow( self )
+        #self.filtersWindow = FiltersWindow( self )
         
         self.eventData = {}
         self.opponentData = {}
         self.filteredEventData = []
+        
+        self.statsEvents = {}
+        self.statsFormats = {}
+        self.statsDecks = {}
         
         self.selectedEvents = [ "Magic Pro Tour",
                                 "Magic Pro Tour Qualifier",
@@ -59,6 +58,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                 "Casual - Constructed",
                                 "Casual - Limited",
                                 "Other"]
+        self.selectedDecks = []
                                 
         self.masterEvents = [   "Magic Pro Tour",
                                 "Magic Pro Tour Qualifier",
@@ -78,6 +78,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                 "2 HG Sealed",
                                 "Casual - Constructed",
                                 "Casual - Limited"]
+        self.deckLists =    []
                                 
         
                                 
@@ -86,6 +87,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.statsReset()
         self.assignWidgets()
+        
+    def dataLoadedSuccessful( self, dataDict ):
+        self.eventData = dataDict
+        self.dataLoaded = True
+        self.adjustFiltersButton.setEnabled(True)
+        self.statsFrame.setEnabled(True)
+        self.listFrame.setEnabled(True)
+        self.saveDataButton.setEnabled(True)
+        self.dataLoadedLabel.setText('<html><head/><body><p align="center"><span style=" font-size:14pt; font-style:italic;">Data Loaded</span></p></body></html>')
     
     def messageBox( self, ourMessage, ourTitle="Qute Confirm" ):
 		msgBox = QMessageBox()
@@ -94,106 +104,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		msgBox.exec_()
     
     def statsReset( self ):
-        self.statsEvents = {    "Magic Pro Tour":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Magic Pro Tour Qualifier":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "World Magic Cup Qualifier":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Magic Grand Prix Trial":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Magic Prerelease":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Magic WPN Premium Tournament":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Magic Game Day":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Magic Grand Prix":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Friday Night Magic":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Other":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}}
-        self.statsFormats = {   "Standard":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Modern":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Legacy":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Vintage":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Booster Draft":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Sealed":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "2 HG Sealed":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Casual - Constructed":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Casual - Limited":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
-                                "Other":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}}
-    
-    def phrasePressed( self ):
-        self.rawData = self.statsPaste.toPlainText().split("\n")
-        self.formatData()
-        self.messageBox( "Data successfully imported." )
+        for ourEvent in self.masterEvents:
+            self.statsEvents[ourEvent] = {"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}
+        
+        for ourFormat in self.masterFormats:
+            self.statsFormats[ourFormat] = {"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}
+        
+        for ourDeck in self.deckLists:
+            self.statsDecks[ourDeck] = {"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}
 		
     def exportStatsPressed( self ):
         self.exportWindow.updateText()
         self.exportWindow.show()
     
     def updateFiltersPressed( self ):
-        self.updateFilteredData()
-        
-    def formatData( self ):
-        eventBreaks = []
-        numberOfRows = len(self.rawData)
-        
-        for row in range(numberOfRows):
-            if isDate(self.rawData[row-1][:10]):
-                eventBreaks.append(row-1)
-        
-        for event in eventBreaks:
-            startingRow = event
-            
-            if eventBreaks.index(event)+1 < len(eventBreaks):
-                endingRow = eventBreaks[eventBreaks.index(event) + 1]
-            else:
-                endingRow = len(self.rawData)
-            
-            eventId = self.rawData[startingRow+EventID].split(":")[1].lstrip()
-            eventPlace = self.rawData[startingRow+EventPlace].split(":")[1].lstrip()
-            eventType = self.rawData[startingRow+EventType].split(":")[1].lstrip()
-            
-            if eventType not in self.masterEvents:
-                eventType = "Other"
-            
-            eventPlayers = self.rawData[startingRow+EventPlayers].split(":")[1].lstrip()
-            eventFormat = self.rawData[startingRow+EventFormat].split(":")[1].lstrip()
-            
-            if eventFormat not in self.masterFormats:
-                eventFormat = "Other"
-            
-            eventLocation = self.rawData[startingRow+EventLocation].split(":")[1].lstrip()
-            eventDate = self.rawData[startingRow+EventDate][:10]
-            eventOpponents = []
-            eventWins = 0
-            eventLosses = 0
-            eventDraws = 0
-            
-            for row in range(startingRow+EventHistory, endingRow):
-                ourRound = self.rawData[row].split("\t")
-                if len(ourRound) == 4:
-                    if len(ourRound[3]):
-                        if ourRound[1] == "Win":
-                            eventWins += 1
-                        elif ourRound[1] == "Loss":
-                            eventLosses += 1
-                        elif ourRound[1] == "Draw":
-                            eventDraws += 1
-                        #Name, result, deck, TreeWidgetItem object
-                        eventOpponents.append([ourRound[3], ourRound[1], "", None])
-            
-            eventMatches = eventWins + eventLosses + eventDraws
-            
-            self.eventData[eventId] = { "ID":eventId,
-                                        "Place":eventPlace,
-                                        "Type":eventType,
-                                        "Players":eventPlayers,
-                                        "Format":eventFormat,
-                                        "Location":eventLocation,
-                                        "Date":eventDate,
-                                        "Opponents":eventOpponents,
-                                        "Wins":eventWins,
-                                        "Losses":eventLosses,
-                                        "Draws":eventDraws,
-                                        "Matches":eventMatches,
-                                        "Deck":"",
-                                        "Notes":"",
-                                        "WindowObject":None }
-                                        
         self.updateFilteredData()
         
     def updateFilteredData( self ):
@@ -403,8 +327,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			
 		self.eventData[eventId]["WindowObject"].show()
     
+    def pasteDataPressed( self ):
+        self.pasteWindow.show()
+    
     def assignWidgets( self ):
-        self.phraseButton.clicked.connect(self.phrasePressed)
+        self.pasteDataFromSiteButton.clicked.connect(self.pasteDataPressed)
+    '''Legacy Exports - still porting
         self.updateFiltersButton.clicked.connect(self.updateFiltersPressed)
         self.exportStats.clicked.connect(self.exportStatsPressed)
         self.exportStats_2.clicked.connect(self.exportStatsPressed)
@@ -436,7 +364,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         #Callback for calendars
         self.startingDate.selectionChanged.connect(lambda: self.dateChanged(self.startingDate, "starting"))
-        self.endingDate.selectionChanged.connect(lambda: self.dateChanged(self.endingDate, "ending"))
+        self.endingDate.selectionChanged.connect(lambda: self.dateChanged(self.endingDate, "ending"))'''
     
     def dateChanged( self, ourCalendar, dateType ):
         self.dates[dateType] = ourCalendar.selectedDate().toString("yyyy-MM-dd")
