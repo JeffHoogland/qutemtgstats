@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Main.ui'
 #
-# Created: Fri Nov 14 17:24:08 2014
+# Created: Fri Nov 14 20:39:35 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -205,7 +205,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1420, 502))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1249, 509))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.horizontalLayout_5 = QtGui.QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
@@ -413,7 +413,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 1422, 502))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 1266, 509))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.horizontalLayout_6 = QtGui.QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
@@ -680,10 +680,11 @@ class Ui_MainWindow(object):
         self.eventTree.headerItem().setText(4, QtGui.QApplication.translate("MainWindow", "Format", None, QtGui.QApplication.UnicodeUTF8))
         self.eventTree.headerItem().setText(5, QtGui.QApplication.translate("MainWindow", "Location", None, QtGui.QApplication.UnicodeUTF8))
         self.eventTree.headerItem().setText(6, QtGui.QApplication.translate("MainWindow", "Date", None, QtGui.QApplication.UnicodeUTF8))
-        self.eventTree.headerItem().setText(7, QtGui.QApplication.translate("MainWindow", "Wins", None, QtGui.QApplication.UnicodeUTF8))
-        self.eventTree.headerItem().setText(8, QtGui.QApplication.translate("MainWindow", "Losses", None, QtGui.QApplication.UnicodeUTF8))
-        self.eventTree.headerItem().setText(9, QtGui.QApplication.translate("MainWindow", "Draws", None, QtGui.QApplication.UnicodeUTF8))
-        self.eventTree.headerItem().setText(10, QtGui.QApplication.translate("MainWindow", "Opponents", None, QtGui.QApplication.UnicodeUTF8))
+        self.eventTree.headerItem().setText(7, QtGui.QApplication.translate("MainWindow", "Deck", None, QtGui.QApplication.UnicodeUTF8))
+        self.eventTree.headerItem().setText(8, QtGui.QApplication.translate("MainWindow", "Wins", None, QtGui.QApplication.UnicodeUTF8))
+        self.eventTree.headerItem().setText(9, QtGui.QApplication.translate("MainWindow", "Losses", None, QtGui.QApplication.UnicodeUTF8))
+        self.eventTree.headerItem().setText(10, QtGui.QApplication.translate("MainWindow", "Draws", None, QtGui.QApplication.UnicodeUTF8))
+        self.eventTree.headerItem().setText(11, QtGui.QApplication.translate("MainWindow", "Opponents", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.eventListTab), QtGui.QApplication.translate("MainWindow", "Event List", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentTree.setSortingEnabled(True)
         self.opponentTree.headerItem().setText(0, QtGui.QApplication.translate("MainWindow", "Opponent", None, QtGui.QApplication.UnicodeUTF8))

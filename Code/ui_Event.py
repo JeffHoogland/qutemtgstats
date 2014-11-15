@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Event.ui'
 #
-# Created: Fri Nov 14 17:24:08 2014
+# Created: Fri Nov 14 20:39:35 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,7 +25,7 @@ class Ui_Event(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 446, 817))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 446, 445))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -38,7 +38,7 @@ class Ui_Event(object):
         self.label_2 = QtGui.QLabel(self.frame_2)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout.addWidget(self.label_2)
-        self.eventTypeText = QtGui.QPlainTextEdit(self.frame_2)
+        self.eventTypeText = QtGui.QLineEdit(self.frame_2)
         self.eventTypeText.setObjectName("eventTypeText")
         self.horizontalLayout.addWidget(self.eventTypeText)
         self.verticalLayout_2.addWidget(self.frame_2)
@@ -51,7 +51,7 @@ class Ui_Event(object):
         self.label = QtGui.QLabel(self.frame)
         self.label.setObjectName("label")
         self.horizontalLayout_2.addWidget(self.label)
-        self.locationText = QtGui.QPlainTextEdit(self.frame)
+        self.locationText = QtGui.QLineEdit(self.frame)
         self.locationText.setObjectName("locationText")
         self.horizontalLayout_2.addWidget(self.locationText)
         self.verticalLayout_2.addWidget(self.frame)
@@ -64,9 +64,9 @@ class Ui_Event(object):
         self.label_3 = QtGui.QLabel(self.frame_3)
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_3.addWidget(self.label_3)
-        self.playerText = QtGui.QPlainTextEdit(self.frame_3)
-        self.playerText.setObjectName("playerText")
-        self.horizontalLayout_3.addWidget(self.playerText)
+        self.playersText = QtGui.QLineEdit(self.frame_3)
+        self.playersText.setObjectName("playersText")
+        self.horizontalLayout_3.addWidget(self.playersText)
         self.verticalLayout_2.addWidget(self.frame_3)
         self.frame_4 = QtGui.QFrame(self.scrollAreaWidgetContents)
         self.frame_4.setFrameShape(QtGui.QFrame.StyledPanel)
@@ -77,7 +77,7 @@ class Ui_Event(object):
         self.label_4 = QtGui.QLabel(self.frame_4)
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_4.addWidget(self.label_4)
-        self.formatText = QtGui.QTextEdit(self.frame_4)
+        self.formatText = QtGui.QLineEdit(self.frame_4)
         self.formatText.setObjectName("formatText")
         self.horizontalLayout_4.addWidget(self.formatText)
         self.verticalLayout_2.addWidget(self.frame_4)
@@ -90,7 +90,7 @@ class Ui_Event(object):
         self.label_5 = QtGui.QLabel(self.frame_5)
         self.label_5.setObjectName("label_5")
         self.horizontalLayout_5.addWidget(self.label_5)
-        self.placeText = QtGui.QPlainTextEdit(self.frame_5)
+        self.placeText = QtGui.QLineEdit(self.frame_5)
         self.placeText.setObjectName("placeText")
         self.horizontalLayout_5.addWidget(self.placeText)
         self.verticalLayout_2.addWidget(self.frame_5)
@@ -103,7 +103,7 @@ class Ui_Event(object):
         self.label_6 = QtGui.QLabel(self.frame_6)
         self.label_6.setObjectName("label_6")
         self.horizontalLayout_6.addWidget(self.label_6)
-        self.dateText = QtGui.QPlainTextEdit(self.frame_6)
+        self.dateText = QtGui.QLineEdit(self.frame_6)
         self.dateText.setObjectName("dateText")
         self.horizontalLayout_6.addWidget(self.dateText)
         self.verticalLayout_2.addWidget(self.frame_6)
@@ -137,8 +137,7 @@ class Ui_Event(object):
         self.label_9 = QtGui.QLabel(self.frame_9)
         self.label_9.setObjectName("label_9")
         self.horizontalLayout_9.addWidget(self.label_9)
-        self.deckText = QtGui.QPlainTextEdit(self.frame_9)
-        self.deckText.setMinimumSize(QtCore.QSize(0, 59))
+        self.deckText = QtGui.QLineEdit(self.frame_9)
         self.deckText.setObjectName("deckText")
         self.horizontalLayout_9.addWidget(self.deckText)
         self.verticalLayout_3.addWidget(self.frame_9)

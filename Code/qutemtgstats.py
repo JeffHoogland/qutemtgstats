@@ -87,6 +87,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statsReset()
         self.assignWidgets()
     
+    def messageBox( self, ourMessage, ourTitle="Qute Confirm" ):
+		msgBox = QMessageBox()
+                msgBox.setWindowTitle(ourTitle)
+		msgBox.setText(ourMessage)
+		msgBox.exec_()
+    
     def statsReset( self ):
         self.statsEvents = {    "Magic Pro Tour":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
                                 "Magic Pro Tour Qualifier":{"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0},
@@ -111,9 +117,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     
     def phrasePressed( self ):
         self.rawData = self.statsPaste.toPlainText().split("\n")
-        
         self.formatData()
-        
+        self.messageBox( "Data successfully imported." )
+		
     def exportStatsPressed( self ):
         self.exportWindow.updateText()
         self.exportWindow.show()
@@ -173,7 +179,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
             eventMatches = eventWins + eventLosses + eventDraws
             
-            self.eventData[eventId] = { "Place":eventPlace,
+            self.eventData[eventId] = { "ID":eventId,
+										"Place":eventPlace,
                                         "Type":eventType,
                                         "Players":eventPlayers,
                                         "Format":eventFormat,
@@ -186,8 +193,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                         "Matches":eventMatches,
                                         "Deck":"",
                                         "Notes":"",
-                                        "WindowObject":EventWindow( self, eventId ) }
-                        
+                                        "WindowObject":None }
+                                        
         self.updateFilteredData()
         
     def updateFilteredData( self ):
@@ -252,10 +259,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             eventItem.setText(4, unicode(self.eventData[eventId]["Format"]))
             eventItem.setText(5, unicode(self.eventData[eventId]["Location"]))
             eventItem.setText(6, unicode(self.eventData[eventId]["Date"]))
-            eventItem.setText(7, unicode(self.eventData[eventId]["Wins"]))
-            eventItem.setText(8, unicode(self.eventData[eventId]["Losses"]))
-            eventItem.setText(9, unicode(self.eventData[eventId]["Draws"]))
-            eventItem.setText(10, unicode(str(self.eventData[eventId]["Opponents"])))
+            eventItem.setText(7, unicode(self.eventData[eventId]["Deck"]))
+            eventItem.setText(8, unicode(self.eventData[eventId]["Wins"]))
+            eventItem.setText(9, unicode(self.eventData[eventId]["Losses"]))
+            eventItem.setText(10, unicode(self.eventData[eventId]["Draws"]))
+            eventItem.setText(11, unicode(str(self.eventData[eventId]["Opponents"])))
             
             self.eventTree.addTopLevelItem(eventItem)
         
@@ -388,12 +396,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 return True
             else:
                 return False
+                
+    def eventSelected( self, ourEvent, ourColumn ):
+		eventId = ourEvent.text(0)
+		
+		if not self.eventData[eventId]["WindowObject"]:
+			self.eventData[eventId]["WindowObject"] = EventWindow( self, eventId )
+			
+		self.eventData[eventId]["WindowObject"].show()
     
     def assignWidgets( self ):
         self.phraseButton.clicked.connect(self.phrasePressed)
         self.updateFiltersButton.clicked.connect(self.updateFiltersPressed)
         self.exportStats.clicked.connect(self.exportStatsPressed)
         self.exportStats_2.clicked.connect(self.exportStatsPressed)
+        
+        self.eventTree.itemDoubleClicked.connect(self.eventSelected)
         
         #Assign our many check boxes for filters
         self.FNMFilter.stateChanged.connect(lambda: self.checkChanged(self.FNMFilter, "event", self.fnmFrame))

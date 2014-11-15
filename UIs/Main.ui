@@ -496,6 +496,11 @@
           </column>
           <column>
            <property name="text">
+            <string>Deck</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
             <string>Wins</string>
            </property>
           </column>
@@ -575,8 +580,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1420</width>
-             <height>502</height>
+             <width>1249</width>
+             <height>509</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -1008,8 +1013,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1422</width>
-             <height>502</height>
+             <width>1266</width>
+             <height>509</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
