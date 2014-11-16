@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/OpponentList.ui'
 #
-# Created: Sat Nov 15 22:37:17 2014
+# Created: Sat Nov 15 23:03:39 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,9 +28,9 @@ class Ui_OpponentList(object):
         self.buttonFrame.setObjectName("buttonFrame")
         self.horizontalLayout = QtGui.QHBoxLayout(self.buttonFrame)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.exportButton = QtGui.QPushButton(self.buttonFrame)
-        self.exportButton.setObjectName("exportButton")
-        self.horizontalLayout.addWidget(self.exportButton)
+        self.exportStatsButton = QtGui.QPushButton(self.buttonFrame)
+        self.exportStatsButton.setObjectName("exportStatsButton")
+        self.horizontalLayout.addWidget(self.exportStatsButton)
         self.cancelButton = QtGui.QPushButton(self.buttonFrame)
         self.cancelButton.setObjectName("cancelButton")
         self.horizontalLayout.addWidget(self.cancelButton)
@@ -48,6 +48,6 @@ class Ui_OpponentList(object):
         self.opponentTree.headerItem().setText(2, QtGui.QApplication.translate("OpponentList", "Losses", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentTree.headerItem().setText(3, QtGui.QApplication.translate("OpponentList", "Draws", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentTree.headerItem().setText(4, QtGui.QApplication.translate("OpponentList", "Total", None, QtGui.QApplication.UnicodeUTF8))
-        self.exportButton.setText(QtGui.QApplication.translate("OpponentList", "Save to CSV", None, QtGui.QApplication.UnicodeUTF8))
+        self.exportStatsButton.setText(QtGui.QApplication.translate("OpponentList", "Save to CSV", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("OpponentList", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

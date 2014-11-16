@@ -66,7 +66,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="exportButton">
+       <widget class="QPushButton" name="exportStatsButton">
         <property name="text">
          <string>Save to CSV</string>
         </property>
