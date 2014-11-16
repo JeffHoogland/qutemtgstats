@@ -13,7 +13,7 @@ class FiltersWindow(QDialog, Ui_Filters):
         self.rent = parent
 
     def dateChanged( self, ourCalendar, dateType ):
-        self.rents.dates[dateType] = ourCalendar.selectedDate().toString("yyyy-MM-dd")
+        self.rent.dates[dateType] = ourCalendar.selectedDate().toString("yyyy-MM-dd")
         
     def checkChanged( self, ourCheck, checkType, frameObj ):
         if ourCheck.checkState() == Qt.Checked:
