@@ -11,24 +11,26 @@ from ui_Main import Ui_MainWindow
 from ExportStatsWindow import ExportStatsWindow
 from EventWindow import EventWindow
 from PasteWindow import PasteWindow
-#from EventStatsWindow import EventStatsWindow
-#from FormatStatsWindow import FormatStatsWindow
-#from EventListWindow import EventListWindow
-#from OpponentListWindow import OpponentListWindow
-#from FiltersWindow import FiltersWindow
+from FiltersWindow import FiltersWindow
+from EventStatsWindow import EventStatsWindow
+from FormatStatsWindow import FormatStatsWindow
+from EventListWindow import EventListWindow
+from OpponentListWindow import OpponentListWindow
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.dataLoaded = False
         self.setupUi(self)
+        
+        #Create our sub-window objects
         self.exportWindow = ExportStatsWindow( self )
         self.pasteWindow = PasteWindow( self )
-        #self.eventStatsWindow = EventStatsWindow( self )
-        #self.formatStatsWindow = FormatStatsWindow( self )
-        #self.eventListWindow = EventListWindow( self )
-        #self.opponentListWindow = OpponentListWindow( self )
-        #self.filtersWindow = FiltersWindow( self )
+        self.filtersWindow = FiltersWindow( self )
+        self.eventStatsWindow = EventStatsWindow( self )
+        self.formatStatsWindow = FormatStatsWindow( self )
+        self.eventListWindow = EventListWindow( self )
+        self.opponentListWindow = OpponentListWindow( self )
         
         self.eventData = {}
         self.opponentData = {}
@@ -327,11 +329,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			
 		self.eventData[eventId]["WindowObject"].show()
     
-    def pasteDataPressed( self ):
-        self.pasteWindow.show()
-    
     def assignWidgets( self ):
-        self.pasteDataFromSiteButton.clicked.connect(self.pasteDataPressed)
+        self.pasteDataFromSiteButton.clicked.connect(lambda: self.pasteWindow.show())
+        self.adjustFiltersButton.clicked.connect(lambda: self.filtersWindow.show())
+        self.byFormatButton.clicked.connect(lambda: self.formatStatsWindow.show())
+        self.byEventButton.clicked.connect(lambda: self.eventStatsWindow.show())
+        self.listEventButton.clicked.connect(lambda: self.eventListWindow.show())
+        self.listOpponentButton.clicked.connect(lambda: self.opponentListWindow.show())
+        
     '''Legacy Exports - still porting
         self.updateFiltersButton.clicked.connect(self.updateFiltersPressed)
         self.exportStats.clicked.connect(self.exportStatsPressed)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/FormatStats.ui'
 #
-# Created: Fri Nov 14 23:51:26 2014
+# Created: Sat Nov 15 22:37:17 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -224,9 +224,9 @@ class Ui_FormatStats(object):
         self.exportStatsButton = QtGui.QPushButton(self.buttonFrame)
         self.exportStatsButton.setObjectName("exportStatsButton")
         self.horizontalLayout.addWidget(self.exportStatsButton)
-        self.closeButton = QtGui.QPushButton(self.buttonFrame)
-        self.closeButton.setObjectName("closeButton")
-        self.horizontalLayout.addWidget(self.closeButton)
+        self.cancelButton = QtGui.QPushButton(self.buttonFrame)
+        self.cancelButton.setObjectName("cancelButton")
+        self.horizontalLayout.addWidget(self.cancelButton)
         self.verticalLayout.addWidget(self.buttonFrame)
 
         self.retranslateUi(FormatStats)
@@ -275,5 +275,5 @@ class Ui_FormatStats(object):
         self.otherMatches.setText(QtGui.QApplication.translate("FormatStats", "Total Matches", None, QtGui.QApplication.UnicodeUTF8))
         self.otherWinPercent.setText(QtGui.QApplication.translate("FormatStats", "Win %", None, QtGui.QApplication.UnicodeUTF8))
         self.exportStatsButton.setText(QtGui.QApplication.translate("FormatStats", "Export Stats", None, QtGui.QApplication.UnicodeUTF8))
-        self.closeButton.setText(QtGui.QApplication.translate("FormatStats", "Done", None, QtGui.QApplication.UnicodeUTF8))
+        self.cancelButton.setText(QtGui.QApplication.translate("FormatStats", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

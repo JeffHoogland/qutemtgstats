@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Filters.ui'
 #
-# Created: Fri Nov 14 23:51:26 2014
+# Created: Sat Nov 15 22:37:17 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -209,5 +209,5 @@ class Ui_Filters(object):
         self.datesLabel.setText(QtGui.QApplication.translate("Filters", "<html><head/><body><p><span style=\" font-size:16pt;\">Starting Date:</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Filters", "<html><head/><body><p><span style=\" font-size:16pt;\">Ending Date:</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.updateFiltersButton.setText(QtGui.QApplication.translate("Filters", "Apply Filters", None, QtGui.QApplication.UnicodeUTF8))
-        self.cancelButton.setText(QtGui.QApplication.translate("Filters", "PushButton", None, QtGui.QApplication.UnicodeUTF8))
+        self.cancelButton.setText(QtGui.QApplication.translate("Filters", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

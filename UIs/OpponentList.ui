@@ -73,7 +73,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="closeButton">
+       <widget class="QPushButton" name="cancelButton">
         <property name="text">
          <string>Done</string>
         </property>

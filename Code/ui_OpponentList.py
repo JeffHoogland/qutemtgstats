@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/OpponentList.ui'
 #
-# Created: Fri Nov 14 23:51:26 2014
+# Created: Sat Nov 15 22:37:17 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -31,9 +31,9 @@ class Ui_OpponentList(object):
         self.exportButton = QtGui.QPushButton(self.buttonFrame)
         self.exportButton.setObjectName("exportButton")
         self.horizontalLayout.addWidget(self.exportButton)
-        self.closeButton = QtGui.QPushButton(self.buttonFrame)
-        self.closeButton.setObjectName("closeButton")
-        self.horizontalLayout.addWidget(self.closeButton)
+        self.cancelButton = QtGui.QPushButton(self.buttonFrame)
+        self.cancelButton.setObjectName("cancelButton")
+        self.horizontalLayout.addWidget(self.cancelButton)
         self.verticalLayout.addWidget(self.buttonFrame)
 
         self.retranslateUi(OpponentList)
@@ -49,5 +49,5 @@ class Ui_OpponentList(object):
         self.opponentTree.headerItem().setText(3, QtGui.QApplication.translate("OpponentList", "Draws", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentTree.headerItem().setText(4, QtGui.QApplication.translate("OpponentList", "Total", None, QtGui.QApplication.UnicodeUTF8))
         self.exportButton.setText(QtGui.QApplication.translate("OpponentList", "Save to CSV", None, QtGui.QApplication.UnicodeUTF8))
-        self.closeButton.setText(QtGui.QApplication.translate("OpponentList", "Done", None, QtGui.QApplication.UnicodeUTF8))
+        self.cancelButton.setText(QtGui.QApplication.translate("OpponentList", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

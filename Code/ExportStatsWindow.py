@@ -10,7 +10,6 @@ class ExportStatsWindow(QDialog, Ui_ExportStats):
         super(ExportStatsWindow, self).__init__(parent)
         self.setupUi(self)
         self.assignWidgets()
-        
         self.rent = parent
         
     def updateText( self ):
