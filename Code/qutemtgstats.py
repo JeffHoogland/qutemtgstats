@@ -10,7 +10,6 @@ from ui_Main import Ui_MainWindow
 
 #Dialog windows broken out into seperate files to manage things easier
 from ExportStatsWindow import ExportStatsWindow
-from EventWindow import EventWindow
 from PasteWindow import PasteWindow
 from FiltersWindow import FiltersWindow
 from EventStatsWindow import EventStatsWindow

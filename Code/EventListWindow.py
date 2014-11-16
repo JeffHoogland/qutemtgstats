@@ -5,6 +5,8 @@ from PySide.QtCore import *
 
 from ui_EventList import Ui_EventList
 
+from EventWindow import EventWindow
+
 class EventListWindow(QDialog, Ui_EventList):
     def __init__(self, parent):
         super(EventListWindow, self).__init__(parent)
@@ -42,7 +44,7 @@ class EventListWindow(QDialog, Ui_EventList):
 		eventId = ourEvent.text(0)
 		
 		if not self.rent.eventData[eventId]["WindowObject"]:
-			self.rent.eventData[eventId]["WindowObject"] = EventWindow( self, eventId )
+			self.rent.eventData[eventId]["WindowObject"] = EventWindow( self.rent, eventId )
 			
 		self.rent.eventData[eventId]["WindowObject"].show()
 
