@@ -56,9 +56,6 @@ class FormatStatsWindow(QDialog, Ui_FormatStats):
     def cancelPressed( self ):
         self.hide()
 
-    def exportStatsPressed( self ):
-        pass
-
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)
-        self.exportStatsButton.clicked.connect(self.exportStatsPressed)
+        self.exportStatsButton.clicked.connect(lambda: self.rent.exportStatsPressed())

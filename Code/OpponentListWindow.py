@@ -37,3 +37,15 @@ class OpponentListWindow(QDialog, Ui_OpponentList):
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)
         self.exportStatsButton.clicked.connect(self.exportStatsPressed)
+
+#Custom object to allow sorting by number and alpha
+class TreeWidgetItem( QTreeWidgetItem ):
+    def __init__(self, parent=None):
+        QTreeWidgetItem.__init__(self, parent)
+
+    def __lt__(self, otherItem):
+        column = self.treeWidget().sortColumn()
+        try:
+            return float( self.text(column) ) > float( otherItem.text(column) )
+        except ValueError:
+            return self.text(column) > otherItem.text(column)

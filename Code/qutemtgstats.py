@@ -1,6 +1,7 @@
 import sys
 import os
 import platform
+import datetime
 
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -107,10 +108,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		msgBox.exec_()
     
     def statsReset( self ):
-        for ourEvent in self.masterEvents:
+        for ourEvent in self.selectedEvents:
             self.statsEvents[ourEvent] = {"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}
         
-        for ourFormat in self.masterFormats:
+        for ourFormat in self.selectedFormats:
             self.statsFormats[ourFormat] = {"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}
         
         for ourDeck in self.deckLists:
