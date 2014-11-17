@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/EventList.ui'
 #
-# Created: Mon Nov 17 14:50:54 2014
+# Created: Mon Nov 17 15:46:02 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -45,7 +45,7 @@ class Ui_EventList(object):
         QtCore.QMetaObject.connectSlotsByName(EventList)
 
     def retranslateUi(self, EventList):
-        EventList.setWindowTitle(QtGui.QApplication.translate("EventList", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
+        EventList.setWindowTitle(QtGui.QApplication.translate("EventList", "Qute Event List", None, QtGui.QApplication.UnicodeUTF8))
         self.eventListLabel.setText(QtGui.QApplication.translate("EventList", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">Select an Event to Add/Edit Data</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.eventTree.headerItem().setText(0, QtGui.QApplication.translate("EventList", "ID", None, QtGui.QApplication.UnicodeUTF8))
         self.eventTree.headerItem().setText(1, QtGui.QApplication.translate("EventList", "Place", None, QtGui.QApplication.UnicodeUTF8))

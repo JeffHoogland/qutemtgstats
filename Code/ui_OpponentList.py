@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/OpponentList.ui'
 #
-# Created: Mon Nov 17 14:50:54 2014
+# Created: Mon Nov 17 15:46:03 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -40,7 +40,7 @@ class Ui_OpponentList(object):
         QtCore.QMetaObject.connectSlotsByName(OpponentList)
 
     def retranslateUi(self, OpponentList):
-        OpponentList.setWindowTitle(QtGui.QApplication.translate("OpponentList", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
+        OpponentList.setWindowTitle(QtGui.QApplication.translate("OpponentList", "Qute Opponent List", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentListLabel.setText(QtGui.QApplication.translate("OpponentList", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">Opponents</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentTree.setSortingEnabled(True)
         self.opponentTree.headerItem().setText(0, QtGui.QApplication.translate("OpponentList", "Opponent", None, QtGui.QApplication.UnicodeUTF8))
