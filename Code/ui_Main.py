@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Main.ui'
 #
-# Created: Sun Nov 16 22:11:41 2014
+# Created: Mon Nov 17 13:38:21 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(438, 391)
+        MainWindow.resize(391, 411)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.centralwidget)
@@ -105,10 +105,20 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.listOpponentButton)
         self.verticalLayout_2.addWidget(self.listButtonFrame)
         self.verticalLayout_4.addWidget(self.listFrame)
-        self.saveDataButton = QtGui.QPushButton(self.centralwidget)
+        self.frame = QtGui.QFrame(self.centralwidget)
+        self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtGui.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout_5 = QtGui.QHBoxLayout(self.frame)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.saveDataButton = QtGui.QPushButton(self.frame)
         self.saveDataButton.setEnabled(False)
         self.saveDataButton.setObjectName("saveDataButton")
-        self.verticalLayout_4.addWidget(self.saveDataButton)
+        self.horizontalLayout_5.addWidget(self.saveDataButton)
+        self.helpButton = QtGui.QPushButton(self.frame)
+        self.helpButton.setObjectName("helpButton")
+        self.horizontalLayout_5.addWidget(self.helpButton)
+        self.verticalLayout_4.addWidget(self.frame)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -118,8 +128,8 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Qute MTG Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.setupLabel.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Setup</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.dataLoadedLabel.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-style:italic;\">No Data Loaded</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.loadFromFileButton.setText(QtGui.QApplication.translate("MainWindow", "Load Data from File", None, QtGui.QApplication.UnicodeUTF8))
-        self.pasteDataFromSiteButton.setText(QtGui.QApplication.translate("MainWindow", "Paste Data from Website", None, QtGui.QApplication.UnicodeUTF8))
+        self.loadFromFileButton.setText(QtGui.QApplication.translate("MainWindow", "Load Data", None, QtGui.QApplication.UnicodeUTF8))
+        self.pasteDataFromSiteButton.setText(QtGui.QApplication.translate("MainWindow", "Paste Data", None, QtGui.QApplication.UnicodeUTF8))
         self.adjustFiltersButton.setText(QtGui.QApplication.translate("MainWindow", "Adjust Filters", None, QtGui.QApplication.UnicodeUTF8))
         self.statsLabel.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">Stats By</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.byFormatButton.setText(QtGui.QApplication.translate("MainWindow", "Format", None, QtGui.QApplication.UnicodeUTF8))
@@ -129,4 +139,5 @@ class Ui_MainWindow(object):
         self.listEventButton.setText(QtGui.QApplication.translate("MainWindow", "Events", None, QtGui.QApplication.UnicodeUTF8))
         self.listOpponentButton.setText(QtGui.QApplication.translate("MainWindow", "Opponents", None, QtGui.QApplication.UnicodeUTF8))
         self.saveDataButton.setText(QtGui.QApplication.translate("MainWindow", "Save Data to File", None, QtGui.QApplication.UnicodeUTF8))
+        self.helpButton.setText(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
 

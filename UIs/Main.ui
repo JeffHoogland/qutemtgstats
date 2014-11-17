@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>438</width>
-    <height>391</height>
+    <width>391</width>
+    <height>411</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -62,14 +62,14 @@
           <item>
            <widget class="QPushButton" name="loadFromFileButton">
             <property name="text">
-             <string>Load Data from File</string>
+             <string>Load Data</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pasteDataFromSiteButton">
             <property name="text">
-             <string>Paste Data from Website</string>
+             <string>Paste Data</string>
             </property>
            </widget>
           </item>
@@ -193,13 +193,32 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="saveDataButton">
-      <property name="enabled">
-       <bool>false</bool>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
       </property>
-      <property name="text">
-       <string>Save Data to File</string>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QPushButton" name="saveDataButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Save Data to File</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="helpButton">
+         <property name="text">
+          <string>Help</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>

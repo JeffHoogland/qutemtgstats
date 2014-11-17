@@ -12,6 +12,7 @@ from ui_Main import Ui_MainWindow
 #Dialog windows broken out into seperate files to manage things easier
 from ExportStatsWindow import ExportStatsWindow
 from PasteWindow import PasteWindow
+from HelpWindow import HelpWindow
 from FiltersWindow import FiltersWindow
 from EventStatsWindow import EventStatsWindow
 from DeckStatsWindow import DeckStatsWindow
@@ -28,6 +29,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #Create our sub-window objects
         self.exportWindow = ExportStatsWindow( self )
         self.pasteWindow = PasteWindow( self )
+        self.helpWindow = HelpWindow( self )
         self.eventStatsWindow = EventStatsWindow( self )
         self.formatStatsWindow = FormatStatsWindow( self )
         self.deckStatsWindow = DeckStatsWindow( self )
@@ -244,6 +246,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     
     def assignWidgets( self ):
         self.pasteDataFromSiteButton.clicked.connect(lambda: self.pasteWindow.show())
+        self.helpButton.clicked.connect(lambda: self.helpWindow.show())
         self.adjustFiltersButton.clicked.connect(lambda: self.filtersWindow.show())
         self.byFormatButton.clicked.connect(lambda: self.formatStatsWindow.show())
         self.byEventButton.clicked.connect(lambda: self.eventStatsWindow.show())
