@@ -14,6 +14,7 @@ from ExportStatsWindow import ExportStatsWindow
 from PasteWindow import PasteWindow
 from FiltersWindow import FiltersWindow
 from EventStatsWindow import EventStatsWindow
+from DeckStatsWindow import DeckStatsWindow
 from FormatStatsWindow import FormatStatsWindow
 from EventListWindow import EventListWindow
 from OpponentListWindow import OpponentListWindow
@@ -29,6 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pasteWindow = PasteWindow( self )
         self.eventStatsWindow = EventStatsWindow( self )
         self.formatStatsWindow = FormatStatsWindow( self )
+        self.deckStatsWindow = DeckStatsWindow( self )
         self.eventListWindow = EventListWindow( self )
         self.opponentListWindow = OpponentListWindow( self )
         self.filtersWindow = FiltersWindow( self )
@@ -81,7 +83,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                 "2 HG Sealed",
                                 "Casual - Constructed",
                                 "Casual - Limited"]
-        self.deckLists =    []
+        self.decksList =    []
                                 
         
                                 
@@ -100,6 +102,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.listFrame.setEnabled(True)
         self.saveDataButton.setEnabled(True)
         self.dataLoadedLabel.setText('<html><head/><body><p align="center"><span style=" font-size:14pt; font-style:italic;">Data Loaded</span></p></body></html>')
+        self.messageBox( "Data successfully imported." )
     
     def messageBox( self, ourMessage, ourTitle="Qute Confirm" ):
 		msgBox = QMessageBox()
@@ -114,7 +117,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for ourFormat in self.selectedFormats:
             self.statsFormats[ourFormat] = {"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}
         
-        for ourDeck in self.deckLists:
+        for ourDeck in self.decksList:
             self.statsDecks[ourDeck] = {"Matches":0, "Wins":0, "Losses":0, "Draws":0, "Win Percent":0.0}
 		
     def exportStatsPressed( self ):
@@ -142,6 +145,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def updateFilteredData( self ):
         self.filteredEventData = []
         self.opponentData = {}
+        self.deckCheck()
         self.statsReset()
         
         #Find opponents and events that meet our applied filters
@@ -151,11 +155,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 ourEvent = self.eventData[eventId]
                 ourType = ourEvent["Type"]
                 ourFormat = ourEvent["Format"]
+                ourDeck = ourEvent["Deck"]
                 
                 #Add stats data
                 for tp in ["Wins", "Losses", "Draws", "Matches"]:
                     self.statsEvents[ourType][tp] += ourEvent[tp]
                     self.statsFormats[ourFormat][tp] += ourEvent[tp]
+                    if ourDeck:
+                        self.statsDecks[ourDeck][tp] += ourEvent[tp]
                 
                 #Add opponent data
                 for opponent in ourEvent["Opponents"]:
@@ -170,13 +177,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.statsFormats[tp]["Matches"] > 0:
                 self.statsFormats[tp]["Win Percent"] = float(self.statsFormats[tp]["Wins"]) / self.statsFormats[tp]["Matches"] * 100
         
-        self.updateGUI()
+        for tp in self.statsDecks:
+            if self.statsDecks[tp]["Matches"] > 0:
+                self.statsDecks[tp]["Win Percent"] = float(self.statsDecks[tp]["Wins"]) / self.statsDecks[tp]["Matches"] * 100
         
     def updateGUI( self ):
+        self.updateFilteredData()
         self.eventListWindow.updateGUI()
         self.opponentListWindow.updateGUI()
         self.eventStatsWindow.updateGUI()
         self.formatStatsWindow.updateGUI()
+        self.deckStatsWindow.updateGUI()
+        
+    def deckCheck( self ):
+        del self.decksList[:]
+        for ourEvent in self.eventData:
+            if self.eventData[ourEvent]["Deck"] and self.eventData[ourEvent]["Deck"] not in self.decksList:
+                self.decksList.append(self.eventData[ourEvent]["Deck"])
+                
+        #Hard code selectedDecks to match decksList for now. Maybe add decks to be fiterable later
+        self.selectedDecks = self.decksList
         
     def addMatch( self, opponent, result ):
         """opponent is the opponent's name and result should be Win/Loss/Draw"""
@@ -227,6 +247,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.adjustFiltersButton.clicked.connect(lambda: self.filtersWindow.show())
         self.byFormatButton.clicked.connect(lambda: self.formatStatsWindow.show())
         self.byEventButton.clicked.connect(lambda: self.eventStatsWindow.show())
+        self.byDeckButton.clicked.connect(lambda: self.deckStatsWindow.show())
         self.listEventButton.clicked.connect(lambda: self.eventListWindow.show())
         self.listOpponentButton.clicked.connect(lambda: self.opponentListWindow.show())
         self.saveDataButton.clicked.connect(self.savePressed)

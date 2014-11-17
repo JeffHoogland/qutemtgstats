@@ -28,6 +28,13 @@ class ExportStatsWindow(QDialog, Ui_ExportStats):
             ourText = "%s \n \nTotal Record: %s-%s-%s"%(ourText, ourKey['Wins'], ourKey['Losses'], ourKey['Draws'])
             ourText = "%s\nTotal Matches: %s"%(ourText, ourKey['Matches'])
             ourText = "%s\nWin Percent: %.2f\n\n"%(ourText, ourKey['Win Percent'])
+
+        for ourDeck in self.rent.selectedDecks:
+            ourKey = self.rent.statsDecks[ourDeck]
+            ourText = "%s%s -"%(ourText, ourDeck)
+            ourText = "%s \n \nTotal Record: %s-%s-%s"%(ourText, ourKey['Wins'], ourKey['Losses'], ourKey['Draws'])
+            ourText = "%s\nTotal Matches: %s"%(ourText, ourKey['Matches'])
+            ourText = "%s\nWin Percent: %.2f\n\n"%(ourText, ourKey['Win Percent'])
             
         self.statsText.setPlainText(ourText)
         

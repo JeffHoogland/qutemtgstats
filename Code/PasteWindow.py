@@ -36,7 +36,6 @@ class PasteWindow(QDialog, Ui_Paste):
     def prasePressed( self ):
         self.rawData = self.statsPaste.toPlainText().split("\n")
         self.formatData()
-        self.rent.messageBox( "Data successfully imported." )
 
     def formatData( self ):
         eventBreaks = []

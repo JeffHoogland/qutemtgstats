@@ -33,7 +33,7 @@ class FiltersWindow(QDialog, Ui_Filters):
         self.hide()
 
     def updateFiltersPressed( self ):
-        self.rent.updateFilteredData()
+        self.rent.updateGUI()
 
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)

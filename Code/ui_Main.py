@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Main.ui'
 #
-# Created: Sat Nov 15 23:03:39 2014
+# Created: Sun Nov 16 22:11:41 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtGui.QVBoxLayout(self.setupFrame)
         self.verticalLayout.setObjectName("verticalLayout")
         self.setupLabelFrame = QtGui.QFrame(self.setupFrame)
-        self.setupLabelFrame.setFrameShape(QtGui.QFrame.StyledPanel)
+        self.setupLabelFrame.setFrameShape(QtGui.QFrame.NoFrame)
         self.setupLabelFrame.setFrameShadow(QtGui.QFrame.Raised)
         self.setupLabelFrame.setObjectName("setupLabelFrame")
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.setupLabelFrame)
