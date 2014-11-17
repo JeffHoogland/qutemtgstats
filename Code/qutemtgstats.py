@@ -2,6 +2,7 @@ import sys
 import os
 import platform
 import datetime
+import cPickle as pickle
 
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -120,6 +121,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.exportWindow.updateText()
         self.exportWindow.show()
         
+    def savePressed( self ):
+        filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME')) #returns (fileName, selectedFilter) 
+        self.clearObjects()
+        pickle.dump( self.eventData, open( filename[0], "wb" ))
+        self.messageBox( "Data successfully saved." )
+        
+    def loadPressed( self ):
+        filename = QFileDialog.getOpenFileName(self, 'Select stored data:', os.getenv('HOME')) #returns (fileName, selectedFilter)
+        self.dataLoadedSuccessful(pickle.load( open( filename[0], "rb" )))
+        
+    def clearObjects( self ):
+        for ourEvent in self.eventData:
+            if self.eventData[ourEvent]["WindowObject"]:
+                self.eventData[ourEvent]["WindowObject"].done(0)
+                self.eventData[ourEvent]["WindowObject"] = None
+                for i in range(len(self.eventData[ourEvent]["Opponents"])):
+                    self.eventData[ourEvent]["Opponents"][i][3] = ""
+        
     def updateFilteredData( self ):
         self.filteredEventData = []
         self.opponentData = {}
@@ -210,6 +229,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.byEventButton.clicked.connect(lambda: self.eventStatsWindow.show())
         self.listEventButton.clicked.connect(lambda: self.eventListWindow.show())
         self.listOpponentButton.clicked.connect(lambda: self.opponentListWindow.show())
+        self.saveDataButton.clicked.connect(self.savePressed)
+        self.loadFromFileButton.clicked.connect(self.loadPressed)
 
 #Custom object to allow sorting by number and alpha
 class TreeWidgetItem( QTreeWidgetItem ):
