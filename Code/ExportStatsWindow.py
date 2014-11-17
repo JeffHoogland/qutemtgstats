@@ -40,10 +40,13 @@ class ExportStatsWindow(QDialog, Ui_ExportStats):
         
     def savePressed( self ):
         filename = QFileDialog.getSaveFileName(self, 'Save File', os.getenv('HOME'), 'Text Files (*.txt)') #returns (fileName, selectedFilter) 
-        f = open(filename[0], 'w') 
-        filedata = self.statsText.toPlainText() 
-        f.write(filedata) 
-        f.close()
+        if filename[0]:
+            f = open(filename[0], 'w') 
+            filedata = self.statsText.toPlainText() 
+            f.write(filedata) 
+            f.close()
+            
+            self.rent.messageBox( "Data exported successfully." )
         
     def copyPressed( self ):
         self.statsText.selectAll()

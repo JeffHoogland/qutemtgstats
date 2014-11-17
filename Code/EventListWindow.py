@@ -59,11 +59,12 @@ class EventListWindow(QDialog, Ui_EventList):
 
     def exportStatsPressed( self ):
         filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME'), 'CSV Files (*.csv)') #returns (fileName, selectedFilter) 
-        with open(filename[0], "wb") as f:
-            writer = csv.writer(f)
-            writer.writerows(self.csvList)
+        if filename[0]:
+            with open(filename[0], "wb") as f:
+                writer = csv.writer(f)
+                writer.writerows(self.csvList)
 
-        self.rent.messageBox( "Data exported successfully." )
+            self.rent.messageBox( "Data exported successfully." )
 
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)
