@@ -167,8 +167,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         self.statsDecks[ourDeck][tp] += ourEvent[tp]
                 
                 #Add opponent data
+                ourCounter = 0
                 for opponent in ourEvent["Opponents"]:
-                    self.addMatch( ourEvent["Opponents"][ourEvent["Opponents"].index(opponent)][0], ourEvent["Opponents"][ourEvent["Opponents"].index(opponent)][1] )
+                    self.addMatch( ourEvent["Opponents"][ourCounter][0], ourEvent["Opponents"][ourCounter][1] )
+                    ourCounter += 1
         
         #Calculate win %s within the filtered data
         for tp in self.statsEvents:
