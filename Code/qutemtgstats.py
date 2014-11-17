@@ -127,14 +127,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.exportWindow.show()
         
     def savePressed( self ):
-        filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME')) #returns (fileName, selectedFilter) 
+        filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME'), 'Qute Dump (*.qute)') #returns (fileName, selectedFilter) 
         if filename[0]:
             self.clearObjects()
             pickle.dump( self.eventData, open( filename[0], "wb" ))
             self.messageBox( "Data successfully saved." )
         
     def loadPressed( self ):
-        filename = QFileDialog.getOpenFileName(self, 'Select stored data:', os.getenv('HOME')) #returns (fileName, selectedFilter)
+        filename = QFileDialog.getOpenFileName(self, 'Select stored data:', os.getenv('HOME'), 'Qute Dump (*.qute)') #returns (fileName, selectedFilter)
         if filename[0]:
             self.dataLoadedSuccessful(pickle.load( open( filename[0], "rb" )))
         

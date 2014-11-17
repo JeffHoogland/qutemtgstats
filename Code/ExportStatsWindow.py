@@ -39,7 +39,7 @@ class ExportStatsWindow(QDialog, Ui_ExportStats):
         self.statsText.setPlainText(ourText)
         
     def savePressed( self ):
-        filename = QFileDialog.getSaveFileName(self, 'Save File', os.getenv('HOME')) #returns (fileName, selectedFilter) 
+        filename = QFileDialog.getSaveFileName(self, 'Save File', os.getenv('HOME'), 'Text Files (*.txt)') #returns (fileName, selectedFilter) 
         f = open(filename[0], 'w') 
         filedata = self.statsText.toPlainText() 
         f.write(filedata) 

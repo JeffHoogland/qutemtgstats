@@ -38,7 +38,7 @@ class OpponentListWindow(QDialog, Ui_OpponentList):
         self.hide()
 
     def exportStatsPressed( self ):
-        filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME')) #returns (fileName, selectedFilter) 
+        filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME'), 'CSV Files (*.csv)') #returns (fileName, selectedFilter) 
         with open(filename[0], "wb") as f:
             writer = csv.writer(f)
             writer.writerows(self.csvList)
