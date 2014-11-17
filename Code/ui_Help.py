@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Help.ui'
 #
-# Created: Mon Nov 17 14:40:31 2014
+# Created: Mon Nov 17 14:50:54 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,6 +17,7 @@ class Ui_Help(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtGui.QLabel(Help)
         self.label.setOpenExternalLinks(True)
+        self.label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextSelectableByMouse)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         self.closeButton = QtGui.QPushButton(Help)
@@ -35,7 +36,7 @@ class Ui_Help(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; font-size:16pt; font-weight:600; color:#333333;\">Getting  Started:</span></p>\n"
 "<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Make sure you are logged into your Wizard\'s account <a href=\"http://www.wizards.com/magic/planeswalkerpoints\"><span style=\" text-decoration: underline; color:#0057ae;\">here</span></a> in <a href=\"http://www.google.com/chrome/\"><span style=\" text-decoration: underline; color:#0057ae;\">Google Chrome</span></a>.</li>\n"
 "<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Open <a href=\"https://www.wizards.com/Magic/PlaneswalkerPoints/History#type=EventsOnly\"><span style=\" text-decoration: underline; color:#0057ae;\">this link</span></a>.</li>\n"
-"<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Press <span style=\" font-style:italic;\">ctrl+shift+j</span></li>\n"
+"<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">While in Chrome browser Press <span style=\" font-style:italic;\">ctrl+shift+j</span></li>\n"
 "<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">In the console that opens run the command: <span style=\" font-weight:600;\">$(&quot;a.Expand&quot;).click()</span></li>\n"
 "<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Make sure you gave the previous command enough time to run! It takes a minute.</li>\n"
 "<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Press <span style=\" font-style:italic;\">ctrl+a</span> to select the data followed by <span style=\" font-style:italic;\">ctrl+c</span> to copy the data</li>\n"

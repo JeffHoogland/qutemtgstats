@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Event.ui'
 #
-# Created: Mon Nov 17 14:40:30 2014
+# Created: Mon Nov 17 14:50:54 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
