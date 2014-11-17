@@ -1,6 +1,6 @@
 A cross-platform tool written in Python and Qt for calculating MTG Stats
 
-![alt text](https://raw.githubusercontent.com/JeffHoogland/qutemtgstats/master/Screenshots/qute-filterspage.png "Filters Page") - ![alt text](https://raw.githubusercontent.com/JeffHoogland/qutemtgstats/master/Screenshots/qute-statspage.png "Stats Page")
+![alt text](https://raw.githubusercontent.com/JeffHoogland/qutemtgstats/master/Screenshots/QuteDataFilters.png "Filters Page") - ![alt text](https://raw.githubusercontent.com/JeffHoogland/qutemtgstats/master/Screenshots/QuteFormatStats.png "Format Stats")
 
 By: [Jeff Hoogland](http://www.jeffhoogland.com/)
 
@@ -16,20 +16,12 @@ Other OS:
 - Run **qutemtgstats.py**
 
 Usage:
-- Make sure you are logged into your Wizard's account [here](http://www.wizards.com/magic/planeswalkerpoints) in [Google Chrome](http://www.google.com/chrome/).
-- Open [this link](https://www.wizards.com/Magic/PlaneswalkerPoints/History#type=EventsOnly).
-- Press *ctrl+shift+j*
-- In the console that opens run the command: **$("a.Expand").click()**
-- Make sure you gave the previous command enough time to run! It takes a minute.
-- Press *ctrl+a* to select the data followed by *ctrl+c* to copy the data
-- Paste the data into the Raw Data tab in Qute
-- Press Phrase Data and Enjoy!
+- See help link in application
 
 TODO List:
 
 - Confirmation that prasing has finished/message if data is not the correct format
 - Profile per-DCI number
-- Adding deck played at events
 - Pivot Tables on Stats Pages
 - Graphs
 - History over given intervals (watch improvement)
