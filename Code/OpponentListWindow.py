@@ -1,4 +1,5 @@
 import os
+import csv
 
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -11,10 +12,13 @@ class OpponentListWindow(QDialog, Ui_OpponentList):
         self.setupUi(self)
         self.assignWidgets()
         self.rent = parent
+        self.csvList = []
 
     def updateGUI( self ):
         self.opponentTree.setSortingEnabled(False)
         self.opponentTree.clear()
+        del self.csvList[:]
+        self.csvList.append(["Opponent", "Wins", "Losses", "Draws", "Total"])
         for opponent in self.rent.opponentData:
             opponentItem =  TreeWidgetItem(self.opponentTree)
             opponentItem.setText(0, opponent)
@@ -24,6 +28,8 @@ class OpponentListWindow(QDialog, Ui_OpponentList):
             opponentItem.setText(4, unicode(self.rent.opponentData[opponent]["Win"]+self.rent.opponentData[opponent]["Loss"]+self.rent.opponentData[opponent]["Draw"]))
             
             self.opponentTree.addTopLevelItem(opponentItem)
+            self.csvList.append([opponent, self.rent.opponentData[opponent]["Win"], self.rent.opponentData[opponent]["Loss"],
+                                self.rent.opponentData[opponent]["Draw"], self.rent.opponentData[opponent]["Win"]+self.rent.opponentData[opponent]["Loss"]+self.rent.opponentData[opponent]["Draw"]])
         
         self.opponentTree.setSortingEnabled(True)
         self.opponentTree.resizeColumnToContents(0)
@@ -32,7 +38,12 @@ class OpponentListWindow(QDialog, Ui_OpponentList):
         self.hide()
 
     def exportStatsPressed( self ):
-        pass
+        filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME')) #returns (fileName, selectedFilter) 
+        with open(filename[0], "wb") as f:
+            writer = csv.writer(f)
+            writer.writerows(self.csvList)
+
+        self.rent.messageBox( "Data exported successfully." )
 
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)

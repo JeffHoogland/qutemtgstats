@@ -1,4 +1,5 @@
 import os
+import csv
 
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -13,10 +14,13 @@ class EventListWindow(QDialog, Ui_EventList):
         self.setupUi(self)
         self.assignWidgets()
         self.rent = parent
+        self.csvList = []
 
     def updateGUI( self ):
         self.eventTree.setSortingEnabled(False)
         self.eventTree.clear()
+        del self.csvList[:]
+        self.csvList.append(["ID","Place","Type","Players","Format","Location","Date","Deck","Wins","Losses","Draws"])
         for eventId in self.rent.filteredEventData:
             eventItem = TreeWidgetItem(self.eventTree)
             eventItem.setText(0, eventId)
@@ -32,6 +36,11 @@ class EventListWindow(QDialog, Ui_EventList):
             eventItem.setText(10, unicode(self.rent.eventData[eventId]["Draws"]))
             
             self.eventTree.addTopLevelItem(eventItem)
+            self.csvList.append([eventId, self.rent.eventData[eventId]["Place"], self.rent.eventData[eventId]["Type"],
+                                    self.rent.eventData[eventId]["Players"], self.rent.eventData[eventId]["Format"],
+                                    self.rent.eventData[eventId]["Location"], self.rent.eventData[eventId]["Date"],
+                                    self.rent.eventData[eventId]["Deck"], self.rent.eventData[eventId]["Wins"],
+                                    self.rent.eventData[eventId]["Losses"], self.rent.eventData[eventId]["Draws"]])
         
         self.eventTree.setSortingEnabled(True)
         for i in range(11):
@@ -49,7 +58,12 @@ class EventListWindow(QDialog, Ui_EventList):
 		self.rent.eventData[eventId]["WindowObject"].show()
 
     def exportStatsPressed( self ):
-        pass
+        filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME')) #returns (fileName, selectedFilter) 
+        with open(filename[0], "wb") as f:
+            writer = csv.writer(f)
+            writer.writerows(self.csvList)
+
+        self.rent.messageBox( "Data exported successfully." )
 
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)

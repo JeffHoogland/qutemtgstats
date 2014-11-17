@@ -95,7 +95,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def dataLoadedSuccessful( self, dataDict ):
         self.eventData = dict(self.eventData.items() + dataDict.items())
-        self.updateFilteredData()
+        self.updateGUI()
         self.dataLoaded = True
         self.adjustFiltersButton.setEnabled(True)
         self.statsFrame.setEnabled(True)
