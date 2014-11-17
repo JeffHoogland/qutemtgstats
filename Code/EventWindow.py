@@ -81,9 +81,11 @@ class EventWindow(QDialog, Ui_Event):
         for i in range(4):
             self.resultsTree.resizeColumnToContents(i)
         
+        roundCounter = 1
+
         for opponent in self.data["Opponents"]:
             roundItem = TreeWidgetItem(self.roundTree)
-            roundItem.setText(0, unicode(self.data["Opponents"].index(opponent)+1))
+            roundItem.setText(0, unicode(roundCounter))
             roundItem.setText(1, unicode(opponent[0]))
             roundItem.setText(2, unicode(opponent[1]))
             roundItem.setText(3, unicode(opponent[2]))
@@ -91,6 +93,7 @@ class EventWindow(QDialog, Ui_Event):
             opponent[3] = roundItem
             
             self.roundTree.addTopLevelItem(roundItem)
+            roundCounter += 1
         
         for i in range(4):
             self.roundTree.resizeColumnToContents(i)

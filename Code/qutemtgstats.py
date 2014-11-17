@@ -92,7 +92,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.assignWidgets()
         
     def dataLoadedSuccessful( self, dataDict ):
-        self.eventData = dataDict
+        self.eventData = dict(self.eventData.items() + dataDict.items())
         self.updateFilteredData()
         self.dataLoaded = True
         self.adjustFiltersButton.setEnabled(True)
@@ -136,8 +136,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.eventData[ourEvent]["WindowObject"]:
                 self.eventData[ourEvent]["WindowObject"].done(0)
                 self.eventData[ourEvent]["WindowObject"] = None
-                for i in range(len(self.eventData[ourEvent]["Opponents"])):
-                    self.eventData[ourEvent]["Opponents"][i][3] = ""
+            for i in range(len(self.eventData[ourEvent]["Opponents"])):
+                self.eventData[ourEvent]["Opponents"][i][3] = ""
         
     def updateFilteredData( self ):
         self.filteredEventData = []

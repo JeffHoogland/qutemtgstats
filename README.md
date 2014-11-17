@@ -27,7 +27,6 @@ Usage:
 
 TODO List:
 
-- Save data to a file and reload it
 - Add new events from an updated paste to saved data
 - Stats by deck
 - Pivot Tables on Stats Pages
