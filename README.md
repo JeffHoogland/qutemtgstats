@@ -27,6 +27,9 @@ Usage:
 
 TODO List:
 
+- Confirmation that prasing has finished/message if data is not the correct format
+- Profile per-DCI number
+- Adding deck played at events
 - Pivot Tables on Stats Pages
 - Graphs
 - History over given intervals (watch improvement)

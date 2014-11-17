@@ -11,3 +11,4 @@ pyside-uic UIs/Filters.ui > Code/ui_Filters.py
 pyside-uic UIs/FormatStats.ui > Code/ui_FormatStats.py
 pyside-uic UIs/OpponentList.ui > Code/ui_OpponentList.py
 pyside-uic UIs/Paste.ui > Code/ui_Paste.py
+pyside-uic UIs/Help.ui > Code/ui_Help.py
