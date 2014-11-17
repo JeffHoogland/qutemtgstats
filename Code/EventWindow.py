@@ -25,6 +25,7 @@ class EventWindow(QDialog, Ui_Event):
         super(EventWindow, self).__init__(parent)
         self.rent = parent
         self.data = parent.eventData[eventId]
+        self.deckAssignment = []
         
         self.setupUi(self)
         self.assignWidgets()
@@ -41,6 +42,11 @@ class EventWindow(QDialog, Ui_Event):
         self.data["Location"] = self.locationText.text()
         self.data["Date"] = self.dateText.text()
         
+        ourCounter = 0
+        for ourRound in self.deckAssignment:
+            self.data["Opponents"][self.deckAssignment[ourCounter][0]][2] = self.deckAssignment[ourCounter][1]
+            ourCounter += 1
+        
         self.rent.updateGUI()
         self.rent.messageBox( "Event changes saved." )
         
@@ -55,6 +61,7 @@ class EventWindow(QDialog, Ui_Event):
                                      
         if ok and deckName:
             self.data["Opponents"][ourIndex][3].setData(3, 0, deckName)
+            self.deckAssignment.append([ourIndex, deckName])
 
     def assignWidgets( self ):
         self.saveChangesButton.clicked.connect(self.savePressed)
