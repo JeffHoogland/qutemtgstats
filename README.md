@@ -20,7 +20,7 @@ Usage:
 
 TODO List:
 
-- Confirmation that prasing has finished/message if data is not the correct format
+- Global stats
 - Profile per-DCI number
 - Pivot Tables on Stats Pages
 - Graphs
