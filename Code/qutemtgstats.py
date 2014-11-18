@@ -171,7 +171,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 #Add opponent data
                 ourCounter = 0
                 for opponent in ourEvent["Opponents"]:
-                    self.addMatch( ourEvent["Opponents"][ourCounter][0], ourEvent["Opponents"][ourCounter][1] )
+                    if ourEvent["Opponents"][ourCounter][1] in ["Win", "Loss", "Draw"]:
+                        ourResult = ourEvent["Opponents"][ourCounter][1]
+                    else:
+                        ourResult = "Loss"
+                    self.addMatch( ourEvent["Opponents"][ourCounter][0], ourResult )
                     ourCounter += 1
         
         #Calculate win %s within the filtered data

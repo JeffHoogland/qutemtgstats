@@ -10,6 +10,8 @@ EventHistory = 10
 
 import os
 import datetime
+import sys
+import traceback
 
 #Quick function for quick usage to see if text is a valid date of the YYYY-MM-DD format
 def isDate(date_text):
@@ -41,72 +43,76 @@ class PasteWindow(QDialog, Ui_Paste):
         eventBreaks = []
         numberOfRows = len(self.rawData)
         
-        for row in range(numberOfRows):
-            if isDate(self.rawData[row-1][:10]):
-                eventBreaks.append(row-1)
-        
-        for event in eventBreaks:
-            startingRow = event
+        try:
+            for row in range(numberOfRows):
+                if isDate(self.rawData[row-1][:10]):
+                    eventBreaks.append(row-1)
             
-            if eventBreaks.index(event)+1 < len(eventBreaks):
-                endingRow = eventBreaks[eventBreaks.index(event) + 1]
-            else:
-                endingRow = len(self.rawData)
+            for event in eventBreaks:
+                startingRow = event
+                
+                if eventBreaks.index(event)+1 < len(eventBreaks):
+                    endingRow = eventBreaks[eventBreaks.index(event) + 1]
+                else:
+                    endingRow = len(self.rawData)
+                
+                eventId = self.rawData[startingRow+EventID].split(":")[1].lstrip()
+                if eventId not in self.rent.eventData:
+                    eventPlace = self.rawData[startingRow+EventPlace].split(":")[1].lstrip()
+                    eventType = self.rawData[startingRow+EventType].split(":")[1].lstrip()
+                    
+                    if eventType not in self.rent.masterEvents:
+                        eventType = "Other"
+                    
+                    eventPlayers = self.rawData[startingRow+EventPlayers].split(":")[1].lstrip()
+                    eventFormat = self.rawData[startingRow+EventFormat].split(":")[1].lstrip()
+                    
+                    if eventFormat not in self.rent.masterFormats:
+                        eventFormat = "Other"
+                    
+                    eventLocation = self.rawData[startingRow+EventLocation].split(":")[1].lstrip()
+                    eventDate = self.rawData[startingRow+EventDate][:10]
+                    eventOpponents = []
+                    eventWins = 0
+                    eventLosses = 0
+                    eventDraws = 0
+                    
+                    for row in range(startingRow+EventHistory, endingRow):
+                        ourRound = self.rawData[row].split("\t")
+                        if len(ourRound) == 4:
+                            if len(ourRound[3]):
+                                if ourRound[1] == "Win":
+                                    eventWins += 1
+                                elif ourRound[1] == "Loss":
+                                    eventLosses += 1
+                                elif ourRound[1] == "Draw":
+                                    eventDraws += 1
+                                #Name, result, deck, TreeWidgetItem object
+                                eventOpponents.append([ourRound[3], ourRound[1], "", None])
+                    
+                    eventMatches = eventWins + eventLosses + eventDraws
+                    
+                    self.eventData[eventId] = { "ID":eventId,
+                                                "Place":eventPlace,
+                                                "Type":eventType,
+                                                "Players":eventPlayers,
+                                                "Format":eventFormat,
+                                                "Location":eventLocation,
+                                                "Date":eventDate,
+                                                "Opponents":eventOpponents,
+                                                "Wins":eventWins,
+                                                "Losses":eventLosses,
+                                                "Draws":eventDraws,
+                                                "Matches":eventMatches,
+                                                "Deck":"",
+                                                "Notes":"",
+                                                "WindowObject":None }
             
-            eventId = self.rawData[startingRow+EventID].split(":")[1].lstrip()
-            if eventId not in self.rent.eventData:
-                eventPlace = self.rawData[startingRow+EventPlace].split(":")[1].lstrip()
-                eventType = self.rawData[startingRow+EventType].split(":")[1].lstrip()
-                
-                if eventType not in self.rent.masterEvents:
-                    eventType = "Other"
-                
-                eventPlayers = self.rawData[startingRow+EventPlayers].split(":")[1].lstrip()
-                eventFormat = self.rawData[startingRow+EventFormat].split(":")[1].lstrip()
-                
-                if eventFormat not in self.rent.masterFormats:
-                    eventFormat = "Other"
-                
-                eventLocation = self.rawData[startingRow+EventLocation].split(":")[1].lstrip()
-                eventDate = self.rawData[startingRow+EventDate][:10]
-                eventOpponents = []
-                eventWins = 0
-                eventLosses = 0
-                eventDraws = 0
-                
-                for row in range(startingRow+EventHistory, endingRow):
-                    ourRound = self.rawData[row].split("\t")
-                    if len(ourRound) == 4:
-                        if len(ourRound[3]):
-                            if ourRound[1] == "Win":
-                                eventWins += 1
-                            elif ourRound[1] == "Loss":
-                                eventLosses += 1
-                            elif ourRound[1] == "Draw":
-                                eventDraws += 1
-                            #Name, result, deck, TreeWidgetItem object
-                            eventOpponents.append([ourRound[3], ourRound[1], "", None])
-                
-                eventMatches = eventWins + eventLosses + eventDraws
-                
-                self.eventData[eventId] = { "ID":eventId,
-                                            "Place":eventPlace,
-                                            "Type":eventType,
-                                            "Players":eventPlayers,
-                                            "Format":eventFormat,
-                                            "Location":eventLocation,
-                                            "Date":eventDate,
-                                            "Opponents":eventOpponents,
-                                            "Wins":eventWins,
-                                            "Losses":eventLosses,
-                                            "Draws":eventDraws,
-                                            "Matches":eventMatches,
-                                            "Deck":"",
-                                            "Notes":"",
-                                            "WindowObject":None }
-        
-        self.hide()
-        self.rent.dataLoadedSuccessful(self.eventData)
+            self.hide()
+            self.rent.dataLoadedSuccessful(self.eventData)
+        except Exception as inst:
+            print "Hit error: %s"%traceback.format_exc()
+            self.rent.messageBox( "<center><b>Something went wrong!</b></center><br><br> Please report the following error message on GitHub along with the data pate used:<br><br> <i>%s</i>"%traceback.format_exc(), "Qute Error" )
 
     def cancelPressed( self ):
         self.hide()
