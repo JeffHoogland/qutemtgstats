@@ -1,6 +1,6 @@
 A cross-platform tool written in Python and Qt for calculating MTG Stats
 
-![alt text](https://raw.githubusercontent.com/JeffHoogland/qutemtgstats/master/Screenshots/QuteDataFilters.png "Filters Page") - ![alt text](https://raw.githubusercontent.com/JeffHoogland/qutemtgstats/master/Screenshots/QuteFormatStats.png "Format Stats")
+![alt text](https://raw.githubusercontent.com/JeffHoogland/qutemtgstats/master/Screenshots/QuteExpanded.png "Qute MTG Stats") 
 
 By: [Jeff Hoogland](http://www.jeffhoogland.com/)
 
