@@ -12,7 +12,7 @@ Windows:
 
 Other OS:
 - Install python 2.7 and pyside
-- Clone the latest sources
+- Download the latest [snapshot](https://github.com/JeffHoogland/qutemtgstats/blob/master/build/qutemtgstats-raw.tar.gz?raw=true)
 - Run **qutemtgstats.py**
 
 Usage:
