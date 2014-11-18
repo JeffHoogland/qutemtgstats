@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Paste.ui'
 #
-# Created: Mon Nov 17 15:46:03 2014
+# Created: Tue Nov 18 08:27:43 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -42,6 +42,6 @@ class Ui_Paste(object):
     def retranslateUi(self, Paste):
         Paste.setWindowTitle(QtGui.QApplication.translate("Paste", "Qute Data Paste", None, QtGui.QApplication.UnicodeUTF8))
         self.pasteLabel.setText(QtGui.QApplication.translate("Paste", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Paste Data Below:</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.praseButton.setText(QtGui.QApplication.translate("Paste", "Prase Data and Generate Stats", None, QtGui.QApplication.UnicodeUTF8))
+        self.praseButton.setText(QtGui.QApplication.translate("Paste", "Parse Data and Generate Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("Paste", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Help.ui'
 #
-# Created: Mon Nov 17 15:46:03 2014
+# Created: Tue Nov 18 08:27:43 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -42,6 +42,6 @@ class Ui_Help(object):
 "<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Press <span style=\" font-style:italic;\">ctrl+a</span> to select the data followed by <span style=\" font-style:italic;\">ctrl+c</span> to copy the data</li>\n"
 "<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Select the <span style=\" font-weight:600;\">Paste Data</span> button on the main window</li>\n"
 "<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Paste the data into the window that opens</li>\n"
-"<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Press Prase Data and Enjoy!</li></ul></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+"<li style=\" font-family:\'Helvetica Neue,Helvetica,Segoe UI,Arial,freesans,sans-serif\'; color:#333333;\" style=\" margin-top:0px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Press Parse Data and Enjoy!</li></ul></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.closeButton.setText(QtGui.QApplication.translate("Help", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

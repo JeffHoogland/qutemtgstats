@@ -40,7 +40,7 @@
       <item>
        <widget class="QPushButton" name="praseButton">
         <property name="text">
-         <string>Prase Data and Generate Stats</string>
+         <string>Parse Data and Generate Stats</string>
         </property>
        </widget>
       </item>
