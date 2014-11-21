@@ -4,6 +4,7 @@ from PySide.QtGui import *
 from PySide.QtCore import *
 
 from ui_Filters import Ui_Filters
+from CalendarWindow import CalendarWindow
 
 class FiltersWindow(QDialog, Ui_Filters):
     def __init__(self, parent):
@@ -84,11 +85,15 @@ class FiltersWindow(QDialog, Ui_Filters):
         self.hide()
         self.rent.messageBox( "Filters successfully applied" )
         
+    def calendarButtonPressed( self, ourButton, dateType ):
+        
 
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)
-
         self.updateFiltersButton.clicked.connect(self.updateFiltersPressed)
+        
+        self.endingButton.clicked.connect(lambda: self.calendarButtonPressed(self.endingButton), "Ending")
+        self.startingButton.clicked.connect(lambda: self.calendarButtonPressed(self.startingButton), "Starting")
         
         #Callback for calendars
         #self.startingDate.selectionChanged.connect(lambda: self.dateChanged(self.startingDate, "starting"))
