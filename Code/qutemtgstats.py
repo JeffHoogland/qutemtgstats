@@ -26,17 +26,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.dataLoaded = False
         self.setupUi(self)
         
-        #Create our sub-window objects
-        self.exportWindow = ExportStatsWindow( self )
-        self.pasteWindow = PasteWindow( self )
-        self.helpWindow = HelpWindow( self )
-        self.eventStatsWindow = EventStatsWindow( self )
-        self.formatStatsWindow = FormatStatsWindow( self )
-        self.deckStatsWindow = DeckStatsWindow( self )
-        self.eventListWindow = EventListWindow( self )
-        self.opponentListWindow = OpponentListWindow( self )
-        self.filtersWindow = FiltersWindow( self )
-        
         self.eventData = {}
         self.opponentData = {}
         self.filteredEventData = []
@@ -52,11 +41,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.eventsList =   []
         self.formatsList =  []
         self.decksList =    ["Blank"]
-                                
         
-                                
         self.dates = {  "starting":"1991-01-01",
                         "ending":"2015-12-31" }
+        
+        #Create our sub-window objects
+        self.exportWindow = ExportStatsWindow( self )
+        self.pasteWindow = PasteWindow( self )
+        self.helpWindow = HelpWindow( self )
+        self.eventStatsWindow = EventStatsWindow( self )
+        self.formatStatsWindow = FormatStatsWindow( self )
+        self.deckStatsWindow = DeckStatsWindow( self )
+        self.eventListWindow = EventListWindow( self )
+        self.opponentListWindow = OpponentListWindow( self )
+        self.filtersWindow = FiltersWindow( self )
         
         self.statsReset()
         self.assignWidgets()
@@ -65,7 +63,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.eventData = dict(self.eventData.items() + dataDict.items())
         self.updateGUI()
         self.dataLoaded = True
-        self.adjustFiltersButton.setEnabled(True)
         self.statsFrame.setEnabled(True)
         self.listFrame.setEnabled(True)
         self.saveDataButton.setEnabled(True)
@@ -119,10 +116,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statsReset()
         
         #Find opponents and events that meet our applied filters
-        for eventId in self.eventData:
-            if self.checkEvent(self.eventData[eventId]["Type"]) and self.checkFormat(self.eventData[eventId]["Format"]) and self.checkDeck(self.eventData[eventId]["Deck"]) and self.checkDate(self.eventData[eventId]["Date"]):
-                self.filteredEventData.append(eventId)
-                ourEvent = self.eventData[eventId]
+        for ourEvent in self.eventData:
+            if self.checkEvent(self.eventData[ourEvent]["Type"]) and self.checkFormat(self.eventData[ourEvent]["Format"]) and self.checkDeck(self.eventData[ourEvent]["Deck"]) and self.checkDate(self.eventData[ourEvent]["Date"]):
+                self.filteredEventData.append(ourEvent)
+                ourEvent = self.eventData[ourEvent]
                 ourType = ourEvent["Type"]
                 ourFormat = ourEvent["Format"]
                 ourDeck = ourEvent["Deck"]
@@ -168,7 +165,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def filtersCheck( self ):
         for ourEvent in self.eventData:
             ourKey = self.eventData[ourEvent]
-            
+                
             if ourKey["Deck"] and ourKey["Deck"] not in self.decksList:
                 self.decksList.append(ourKey["Deck"])
                 self.selectedDecks.append(ourKey["Deck"])
@@ -176,7 +173,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if ourKey["Format"] and ourKey["Format"] not in self.formatsList:
                 self.formatsList.append(ourKey["Format"])
                 self.selectedFormats.append(ourKey["Format"])
-                
+                    
             if ourKey["Type"] and ourKey["Type"] not in self.eventsList:
                 self.eventsList.append(ourKey["Type"])
                 self.selectedEvents.append(ourKey["Type"])
@@ -224,7 +221,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def assignWidgets( self ):
         self.pasteDataFromSiteButton.clicked.connect(lambda: self.pasteWindow.show())
         self.helpButton.clicked.connect(lambda: self.helpWindow.show())
-        self.adjustFiltersButton.clicked.connect(lambda: self.filtersWindow.show())
         self.byFormatButton.clicked.connect(lambda: self.formatStatsWindow.show())
         self.byEventButton.clicked.connect(lambda: self.eventStatsWindow.show())
         self.byDeckButton.clicked.connect(lambda: self.deckStatsWindow.show())

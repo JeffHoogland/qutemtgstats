@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/EventStats.ui'
 #
-# Created: Fri Nov 21 09:06:58 2014
+# Created: Fri Nov 21 09:38:52 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,6 +34,10 @@ class Ui_EventStats(object):
         self.exportStatsButton = QtGui.QPushButton(self.frame)
         self.exportStatsButton.setObjectName("exportStatsButton")
         self.horizontalLayout.addWidget(self.exportStatsButton)
+        self.adjustFiltersButton = QtGui.QPushButton(self.frame)
+        self.adjustFiltersButton.setEnabled(True)
+        self.adjustFiltersButton.setObjectName("adjustFiltersButton")
+        self.horizontalLayout.addWidget(self.adjustFiltersButton)
         self.cancelButton = QtGui.QPushButton(self.frame)
         self.cancelButton.setObjectName("cancelButton")
         self.horizontalLayout.addWidget(self.cancelButton)
@@ -45,5 +49,6 @@ class Ui_EventStats(object):
     def retranslateUi(self, EventStats):
         EventStats.setWindowTitle(QtGui.QApplication.translate("EventStats", "Qute Event Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.exportStatsButton.setText(QtGui.QApplication.translate("EventStats", "Export Stats", None, QtGui.QApplication.UnicodeUTF8))
+        self.adjustFiltersButton.setText(QtGui.QApplication.translate("EventStats", "Adjust Filters", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("EventStats", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/FormatStats.ui'
 #
-# Created: Fri Nov 21 09:06:58 2014
+# Created: Fri Nov 21 09:38:52 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,6 +34,10 @@ class Ui_FormatStats(object):
         self.exportStatsButton = QtGui.QPushButton(self.buttonFrame)
         self.exportStatsButton.setObjectName("exportStatsButton")
         self.horizontalLayout.addWidget(self.exportStatsButton)
+        self.adjustFiltersButton = QtGui.QPushButton(self.buttonFrame)
+        self.adjustFiltersButton.setEnabled(True)
+        self.adjustFiltersButton.setObjectName("adjustFiltersButton")
+        self.horizontalLayout.addWidget(self.adjustFiltersButton)
         self.cancelButton = QtGui.QPushButton(self.buttonFrame)
         self.cancelButton.setObjectName("cancelButton")
         self.horizontalLayout.addWidget(self.cancelButton)
@@ -45,5 +49,6 @@ class Ui_FormatStats(object):
     def retranslateUi(self, FormatStats):
         FormatStats.setWindowTitle(QtGui.QApplication.translate("FormatStats", "Qute Format Stats", None, QtGui.QApplication.UnicodeUTF8))
         self.exportStatsButton.setText(QtGui.QApplication.translate("FormatStats", "Export Stats", None, QtGui.QApplication.UnicodeUTF8))
+        self.adjustFiltersButton.setText(QtGui.QApplication.translate("FormatStats", "Adjust Filters", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("FormatStats", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

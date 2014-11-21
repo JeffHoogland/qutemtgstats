@@ -9,9 +9,9 @@ from ui_OpponentList import Ui_OpponentList
 class OpponentListWindow(QDialog, Ui_OpponentList):
     def __init__(self, parent):
         super(OpponentListWindow, self).__init__(parent)
+        self.rent = parent
         self.setupUi(self)
         self.assignWidgets()
-        self.rent = parent
         self.csvList = []
 
     def updateGUI( self ):
@@ -47,6 +47,7 @@ class OpponentListWindow(QDialog, Ui_OpponentList):
             self.rent.messageBox( "Data exported successfully." )
 
     def assignWidgets( self ):
+        self.adjustFiltersButton.clicked.connect(lambda: self.rent.filtersWindow.show())
         self.cancelButton.clicked.connect(self.cancelPressed)
         self.exportStatsButton.clicked.connect(self.exportStatsPressed)
 

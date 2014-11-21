@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Calendar.ui'
 #
-# Created: Fri Nov 21 09:06:59 2014
+# Created: Fri Nov 21 09:38:52 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -16,6 +16,8 @@ class Ui_Calendar(object):
         self.verticalLayout = QtGui.QVBoxLayout(Calendar)
         self.verticalLayout.setObjectName("verticalLayout")
         self.calendarWidget = QtGui.QCalendarWidget(Calendar)
+        self.calendarWidget.setMinimumDate(QtCore.QDate(1991, 1, 1))
+        self.calendarWidget.setGridVisible(True)
         self.calendarWidget.setObjectName("calendarWidget")
         self.verticalLayout.addWidget(self.calendarWidget)
         self.buttonFrame = QtGui.QFrame(Calendar)

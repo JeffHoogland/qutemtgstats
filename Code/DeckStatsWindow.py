@@ -8,10 +8,10 @@ from ui_DeckStats import Ui_DeckStats
 class DeckStatsWindow(QDialog, Ui_DeckStats):
     def __init__(self, parent):
         super(DeckStatsWindow, self).__init__(parent)
+        self.rent = parent
         self.setupUi(self)
         self.frames = {}
         self.assignWidgets()
-        self.rent = parent
 
     def updateGUI( self ):
         for frame in self.frames:
@@ -48,5 +48,6 @@ class DeckStatsWindow(QDialog, Ui_DeckStats):
         self.hide()
 
     def assignWidgets( self ):
+        self.adjustFiltersButton.clicked.connect(lambda: self.rent.filtersWindow.show())
         self.cancelButton.clicked.connect(self.cancelPressed)
         self.exportStatsButton.clicked.connect(lambda: self.rent.exportStatsPressed())

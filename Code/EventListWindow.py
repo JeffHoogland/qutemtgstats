@@ -11,9 +11,9 @@ from EventWindow import EventWindow
 class EventListWindow(QDialog, Ui_EventList):
     def __init__(self, parent):
         super(EventListWindow, self).__init__(parent)
+        self.rent = parent
         self.setupUi(self)
         self.assignWidgets()
-        self.rent = parent
         self.csvList = []
 
     def updateGUI( self ):
@@ -67,6 +67,7 @@ class EventListWindow(QDialog, Ui_EventList):
             self.rent.messageBox( "Data exported successfully." )
 
     def assignWidgets( self ):
+        self.adjustFiltersButton.clicked.connect(lambda: self.rent.filtersWindow.show())
         self.cancelButton.clicked.connect(self.cancelPressed)
         self.exportStatsButton.clicked.connect(self.exportStatsPressed)
         self.eventTree.itemDoubleClicked.connect(self.eventSelected)

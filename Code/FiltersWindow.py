@@ -9,9 +9,9 @@ from CalendarWindow import CalendarWindow
 class FiltersWindow(QDialog, Ui_Filters):
     def __init__(self, parent):
         super(FiltersWindow, self).__init__(parent)
+        self.rent = parent
         self.setupUi(self)
         self.assignWidgets()
-        self.rent = parent
         
         self.qObjects = {   "Formats":{},
                             "Events":{},
@@ -81,20 +81,24 @@ class FiltersWindow(QDialog, Ui_Filters):
         for ourDeck in self.qObjects["Decks"]:
             self.checkToggle(self.qObjects["Decks"][ourDeck], ourDeck, self.rent.selectedDecks)
         
+        self.rent.dates["ending"] = self.endingButton.text()
+        self.rent.dates["starting"] = self.startingButton.text()
+        
+        self.rent.updateFilteredData()
         self.rent.updateGUI()
         self.hide()
         self.rent.messageBox( "Filters successfully applied" )
         
     def calendarButtonPressed( self, ourButton, dateType ):
-        
+        calWin = CalendarWindow( self, ourButton, dateType )
+        calWin.show()
 
     def assignWidgets( self ):
         self.cancelButton.clicked.connect(self.cancelPressed)
         self.updateFiltersButton.clicked.connect(self.updateFiltersPressed)
         
-        self.endingButton.clicked.connect(lambda: self.calendarButtonPressed(self.endingButton), "Ending")
-        self.startingButton.clicked.connect(lambda: self.calendarButtonPressed(self.startingButton), "Starting")
+        self.endingButton.clicked.connect(lambda: self.calendarButtonPressed(self.endingButton, "Ending"))
+        self.startingButton.clicked.connect(lambda: self.calendarButtonPressed(self.startingButton, "Starting"))
         
-        #Callback for calendars
-        #self.startingDate.selectionChanged.connect(lambda: self.dateChanged(self.startingDate, "starting"))
-        #self.endingDate.selectionChanged.connect(lambda: self.dateChanged(self.endingDate, "ending"))
+        self.endingButton.setText(self.rent.dates["ending"])
+        self.startingButton.setText(self.rent.dates["starting"])

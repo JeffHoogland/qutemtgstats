@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/EventList.ui'
 #
-# Created: Fri Nov 21 09:06:58 2014
+# Created: Fri Nov 21 09:38:52 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_EventList(object):
     def setupUi(self, EventList):
         EventList.setObjectName("EventList")
-        EventList.resize(401, 301)
+        EventList.resize(600, 350)
         self.verticalLayout = QtGui.QVBoxLayout(EventList)
         self.verticalLayout.setObjectName("verticalLayout")
         self.eventListLabel = QtGui.QLabel(EventList)
@@ -36,6 +36,10 @@ class Ui_EventList(object):
         self.exportStatsButton = QtGui.QPushButton(self.buttonFrame)
         self.exportStatsButton.setObjectName("exportStatsButton")
         self.horizontalLayout.addWidget(self.exportStatsButton)
+        self.adjustFiltersButton = QtGui.QPushButton(self.buttonFrame)
+        self.adjustFiltersButton.setEnabled(True)
+        self.adjustFiltersButton.setObjectName("adjustFiltersButton")
+        self.horizontalLayout.addWidget(self.adjustFiltersButton)
         self.cancelButton = QtGui.QPushButton(self.buttonFrame)
         self.cancelButton.setObjectName("cancelButton")
         self.horizontalLayout.addWidget(self.cancelButton)
@@ -59,5 +63,6 @@ class Ui_EventList(object):
         self.eventTree.headerItem().setText(9, QtGui.QApplication.translate("EventList", "Losses", None, QtGui.QApplication.UnicodeUTF8))
         self.eventTree.headerItem().setText(10, QtGui.QApplication.translate("EventList", "Draws", None, QtGui.QApplication.UnicodeUTF8))
         self.exportStatsButton.setText(QtGui.QApplication.translate("EventList", "Save to CSV", None, QtGui.QApplication.UnicodeUTF8))
+        self.adjustFiltersButton.setText(QtGui.QApplication.translate("EventList", "Adjust Filters", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("EventList", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

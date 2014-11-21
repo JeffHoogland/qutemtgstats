@@ -15,7 +15,18 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QCalendarWidget" name="calendarWidget"/>
+    <widget class="QCalendarWidget" name="calendarWidget">
+     <property name="minimumDate">
+      <date>
+       <year>1991</year>
+       <month>1</month>
+       <day>1</day>
+      </date>
+     </property>
+     <property name="gridVisible">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QFrame" name="buttonFrame">
@@ -34,7 +45,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="cancelButton">
+       <widget class="QPushButton" name="closeButton">
         <property name="text">
          <string>Cancel</string>
         </property>

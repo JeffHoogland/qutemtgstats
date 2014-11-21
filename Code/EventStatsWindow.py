@@ -8,10 +8,10 @@ from ui_EventStats import Ui_EventStats
 class EventStatsWindow(QDialog, Ui_EventStats):
     def __init__(self, parent):
         super(EventStatsWindow, self).__init__(parent)
+        self.rent = parent
         self.setupUi(self)
         self.assignWidgets()
         self.frames = {}
-        self.rent = parent
 
     def updateGUI( self ):
         for frame in self.frames:
@@ -48,5 +48,6 @@ class EventStatsWindow(QDialog, Ui_EventStats):
         self.hide()
 
     def assignWidgets( self ):
+        self.adjustFiltersButton.clicked.connect(lambda: self.rent.filtersWindow.show())
         self.cancelButton.clicked.connect(self.cancelPressed)
         self.exportStatsButton.clicked.connect(lambda: self.rent.exportStatsPressed())

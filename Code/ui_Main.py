@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Main.ui'
 #
-# Created: Fri Nov 21 09:06:58 2014
+# Created: Fri Nov 21 09:38:52 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -48,10 +48,6 @@ class Ui_MainWindow(object):
         self.pasteDataFromSiteButton = QtGui.QPushButton(self.setupButtonFrame)
         self.pasteDataFromSiteButton.setObjectName("pasteDataFromSiteButton")
         self.horizontalLayout.addWidget(self.pasteDataFromSiteButton)
-        self.adjustFiltersButton = QtGui.QPushButton(self.setupButtonFrame)
-        self.adjustFiltersButton.setEnabled(False)
-        self.adjustFiltersButton.setObjectName("adjustFiltersButton")
-        self.horizontalLayout.addWidget(self.adjustFiltersButton)
         self.verticalLayout.addWidget(self.setupButtonFrame)
         self.verticalLayout_4.addWidget(self.setupFrame)
         self.statsFrame = QtGui.QFrame(self.centralwidget)
@@ -130,7 +126,6 @@ class Ui_MainWindow(object):
         self.dataLoadedLabel.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-style:italic;\">No Data Loaded</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.loadFromFileButton.setText(QtGui.QApplication.translate("MainWindow", "Load Data", None, QtGui.QApplication.UnicodeUTF8))
         self.pasteDataFromSiteButton.setText(QtGui.QApplication.translate("MainWindow", "Paste Data", None, QtGui.QApplication.UnicodeUTF8))
-        self.adjustFiltersButton.setText(QtGui.QApplication.translate("MainWindow", "Adjust Filters", None, QtGui.QApplication.UnicodeUTF8))
         self.statsLabel.setText(QtGui.QApplication.translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt;\">Stats By</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.byFormatButton.setText(QtGui.QApplication.translate("MainWindow", "Format", None, QtGui.QApplication.UnicodeUTF8))
         self.byEventButton.setText(QtGui.QApplication.translate("MainWindow", "Event Type", None, QtGui.QApplication.UnicodeUTF8))

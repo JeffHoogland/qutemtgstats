@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/OpponentList.ui'
 #
-# Created: Fri Nov 21 09:06:59 2014
+# Created: Fri Nov 21 09:38:52 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_OpponentList(object):
     def setupUi(self, OpponentList):
         OpponentList.setObjectName("OpponentList")
-        OpponentList.resize(400, 300)
+        OpponentList.resize(600, 350)
         self.verticalLayout = QtGui.QVBoxLayout(OpponentList)
         self.verticalLayout.setObjectName("verticalLayout")
         self.opponentListLabel = QtGui.QLabel(OpponentList)
@@ -31,6 +31,10 @@ class Ui_OpponentList(object):
         self.exportStatsButton = QtGui.QPushButton(self.buttonFrame)
         self.exportStatsButton.setObjectName("exportStatsButton")
         self.horizontalLayout.addWidget(self.exportStatsButton)
+        self.adjustFiltersButton = QtGui.QPushButton(self.buttonFrame)
+        self.adjustFiltersButton.setEnabled(True)
+        self.adjustFiltersButton.setObjectName("adjustFiltersButton")
+        self.horizontalLayout.addWidget(self.adjustFiltersButton)
         self.cancelButton = QtGui.QPushButton(self.buttonFrame)
         self.cancelButton.setObjectName("cancelButton")
         self.horizontalLayout.addWidget(self.cancelButton)
@@ -49,5 +53,6 @@ class Ui_OpponentList(object):
         self.opponentTree.headerItem().setText(3, QtGui.QApplication.translate("OpponentList", "Draws", None, QtGui.QApplication.UnicodeUTF8))
         self.opponentTree.headerItem().setText(4, QtGui.QApplication.translate("OpponentList", "Total", None, QtGui.QApplication.UnicodeUTF8))
         self.exportStatsButton.setText(QtGui.QApplication.translate("OpponentList", "Save to CSV", None, QtGui.QApplication.UnicodeUTF8))
+        self.adjustFiltersButton.setText(QtGui.QApplication.translate("OpponentList", "Adjust Filters", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("OpponentList", "Done", None, QtGui.QApplication.UnicodeUTF8))
 

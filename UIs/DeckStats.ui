@@ -49,6 +49,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="adjustFiltersButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>Adjust Filters</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="cancelButton">
         <property name="text">
          <string>Done</string>

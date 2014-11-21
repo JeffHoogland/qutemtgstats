@@ -8,10 +8,10 @@ from ui_FormatStats import Ui_FormatStats
 class FormatStatsWindow(QDialog, Ui_FormatStats):
     def __init__(self, parent):
         super(FormatStatsWindow, self).__init__(parent)
+        self.rent = parent
         self.setupUi(self)
         self.assignWidgets()
         self.frames = {}
-        self.rent = parent
 
     def updateGUI( self ):
         for frame in self.frames:
@@ -48,5 +48,6 @@ class FormatStatsWindow(QDialog, Ui_FormatStats):
         self.hide()
 
     def assignWidgets( self ):
+        self.adjustFiltersButton.clicked.connect(lambda: self.rent.filtersWindow.show())
         self.cancelButton.clicked.connect(self.cancelPressed)
         self.exportStatsButton.clicked.connect(lambda: self.rent.exportStatsPressed())
