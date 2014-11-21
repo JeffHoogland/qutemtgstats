@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/DeckStats.ui'
 #
-# Created: Tue Nov 18 14:23:46 2014
+# Created: Fri Nov 21 01:58:25 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,19 +12,19 @@ from PySide import QtCore, QtGui
 class Ui_DeckStats(object):
     def setupUi(self, DeckStats):
         DeckStats.setObjectName("DeckStats")
-        DeckStats.resize(400, 300)
+        DeckStats.resize(400, 350)
         self.verticalLayout = QtGui.QVBoxLayout(DeckStats)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.scrollArea_2 = QtGui.QScrollArea(DeckStats)
-        self.scrollArea_2.setWidgetResizable(True)
-        self.scrollArea_2.setObjectName("scrollArea_2")
-        self.scrollAreaWidgetContents_2 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 378, 223))
-        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
-        self.horizontalLayout_6 = QtGui.QHBoxLayout(self.scrollAreaWidgetContents_2)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
-        self.verticalLayout.addWidget(self.scrollArea_2)
+        self.scrollArea = QtGui.QScrollArea(DeckStats)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtGui.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 380, 273))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.scrollAreaWidgetContents)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.scrollArea)
         self.frame = QtGui.QFrame(DeckStats)
         self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtGui.QFrame.Raised)

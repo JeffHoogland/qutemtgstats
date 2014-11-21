@@ -45,47 +45,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.statsFormats = {}
         self.statsDecks = {}
         
-        self.selectedEvents = [ "Magic Pro Tour",
-                                "Magic Pro Tour Qualifier",
-                                "World Magic Cup Qualifier",
-                                "Magic Grand Prix Trial",
-                                "Magic Prerelease",
-                                "Magic WPN Premium Tournament",
-                                "Magic Game Day",
-                                "Magic Grand Prix",
-                                "Friday Night Magic",
-                                "Other"]
-        self.selectedFormats = ["Standard",
-                                "Modern",
-                                "Legacy",
-                                "Vintage",
-                                "Booster Draft",
-                                "Sealed",
-                                "2 HG Sealed",
-                                "Casual - Constructed",
-                                "Casual - Limited",
-                                "Other"]
-        self.selectedDecks = []
+        self.selectedEvents =   []
+        self.selectedFormats =  []
+        self.selectedDecks =    ["Blank"]
                                 
-        self.masterEvents = [   "Magic Pro Tour",
-                                "Magic Pro Tour Qualifier",
-                                "World Magic Cup Qualifier",
-                                "Magic Grand Prix Trial",
-                                "Magic Prerelease",
-                                "Magic WPN Premium Tournament",
-                                "Magic Game Day",
-                                "Magic Grand Prix",
-                                "Friday Night Magic"]
-        self.masterFormats = [  "Standard",
-                                "Modern",
-                                "Legacy",
-                                "Vintage",
-                                "Booster Draft",
-                                "Sealed",
-                                "2 HG Sealed",
-                                "Casual - Constructed",
-                                "Casual - Limited"]
-        self.decksList =    []
+        self.eventsList =   []
+        self.formatsList =  []
+        self.decksList =    ["Blank"]
                                 
         
                                 
@@ -149,12 +115,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def updateFilteredData( self ):
         self.filteredEventData = []
         self.opponentData = {}
-        self.deckCheck()
+        self.filtersCheck()
         self.statsReset()
         
         #Find opponents and events that meet our applied filters
         for eventId in self.eventData:
-            if self.checkEvent(self.eventData[eventId]["Type"]) and self.checkFormat(self.eventData[eventId]["Format"]) and self.checkDate(self.eventData[eventId]["Date"]):
+            if self.checkEvent(self.eventData[eventId]["Type"]) and self.checkFormat(self.eventData[eventId]["Format"]) and self.checkDeck(self.eventData[eventId]["Deck"]) and self.checkDate(self.eventData[eventId]["Date"]):
                 self.filteredEventData.append(eventId)
                 ourEvent = self.eventData[eventId]
                 ourType = ourEvent["Type"]
@@ -199,14 +165,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.formatStatsWindow.updateGUI()
         self.deckStatsWindow.updateGUI()
         
-    def deckCheck( self ):
-        del self.decksList[:]
+    def filtersCheck( self ):
         for ourEvent in self.eventData:
-            if self.eventData[ourEvent]["Deck"] and self.eventData[ourEvent]["Deck"] not in self.decksList:
-                self.decksList.append(self.eventData[ourEvent]["Deck"])
+            ourKey = self.eventData[ourEvent]
+            
+            if ourKey["Deck"] and ourKey["Deck"] not in self.decksList:
+                self.decksList.append(ourKey["Deck"])
+                self.selectedDecks.append(ourKey["Deck"])
                 
-        #Hard code selectedDecks to match decksList for now. Maybe add decks to be fiterable later
-        self.selectedDecks = self.decksList
+            if ourKey["Format"] and ourKey["Format"] not in self.formatsList:
+                self.formatsList.append(ourKey["Format"])
+                self.selectedFormats.append(ourKey["Format"])
+                
+            if ourKey["Type"] and ourKey["Type"] not in self.eventsList:
+                self.eventsList.append(ourKey["Type"])
+                self.selectedEvents.append(ourKey["Type"])
+                
+        self.filtersWindow.updateGUI()
         
     def addMatch( self, opponent, result ):
         """opponent is the opponent's name and result should be Win/Loss/Draw"""
@@ -227,30 +202,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return True
         else:
             return False
+            
+    def checkDeck( self, deckType ):
+        if deckType in self.selectedDecks or (deckType == "" and "Blank" in self.selectedDecks):
+            return True
+        else:
+            return False
         
     def checkEvent( self, eventType ):
-        if eventType in self.masterEvents:
-            if eventType in self.selectedEvents:
-                return True
-            else:
-                return False
+        if eventType in self.selectedEvents:
+            return True
         else:
-            if "Other" in self.selectedEvents:
-                return True
-            else:
-                return False
-    
+            return False
+        
     def checkFormat( self, formatType ):
-        if formatType in self.masterFormats:
-            if formatType in self.selectedFormats:
-                return True
-            else:
-                return False
+        if formatType in self.selectedFormats:
+            return True
         else:
-            if "Other" in self.selectedFormats:
-                return True
-            else:
-                return False
+            return False
     
     def assignWidgets( self ):
         self.pasteDataFromSiteButton.clicked.connect(lambda: self.pasteWindow.show())

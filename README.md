@@ -23,5 +23,6 @@ TODO List:
 - Global stats
 - Profile per-DCI number
 - Pivot Tables on Stats Pages
+- Ability to assign opponents to groups
 - Graphs
 - History over given intervals (watch improvement)

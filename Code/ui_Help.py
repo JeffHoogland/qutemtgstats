@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UIs/Help.ui'
 #
-# Created: Tue Nov 18 14:23:47 2014
+# Created: Fri Nov 21 01:58:26 2014
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
