@@ -11,7 +11,7 @@ Windows:
 - Extract the zip file and run qutemtgstats
 
 Other OS:
-- Install python 2.7 and pyside
+- Install [python 2.7](https://www.python.org/downloads/) and [pyside](http://qt-project.org/wiki/PySideDownloads)
 - Download the latest [snapshot](https://github.com/JeffHoogland/qutemtgstats/blob/master/build/qutemtgstats-raw.tar.gz?raw=true)
 - Run **qutemtgstats.py**
 
