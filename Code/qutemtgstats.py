@@ -144,15 +144,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #Calculate win %s within the filtered data
         for tp in self.statsEvents:
             if self.statsEvents[tp]["Matches"] > 0:
-                self.statsEvents[tp]["Win Percent"] = float(self.statsEvents[tp]["Wins"]) / self.statsEvents[tp]["Matches"] * 100
+                self.statsEvents[tp]["Win Percent"] = float(self.statsEvents[tp]["Wins"]) / (self.statsEvents[tp]["Wins"]+self.statsEvents[tp]["Losses"]) * 100
             
         for tp in self.statsFormats:
             if self.statsFormats[tp]["Matches"] > 0:
-                self.statsFormats[tp]["Win Percent"] = float(self.statsFormats[tp]["Wins"]) / self.statsFormats[tp]["Matches"] * 100
+                self.statsFormats[tp]["Win Percent"] = float(self.statsFormats[tp]["Wins"]) / (self.statsFormats[tp]["Wins"]+self.statsFormats[tp]["Losses"]) * 100
         
         for tp in self.statsDecks:
             if self.statsDecks[tp]["Matches"] > 0:
-                self.statsDecks[tp]["Win Percent"] = float(self.statsDecks[tp]["Wins"]) / self.statsDecks[tp]["Matches"] * 100
+                self.statsDecks[tp]["Win Percent"] = float(self.statsDecks[tp]["Wins"]) / (self.statsDecks[tp]["Wins"]+self.statsDecks[tp]["Losses"]) * 100
         
     def updateGUI( self ):
         self.updateFilteredData()
