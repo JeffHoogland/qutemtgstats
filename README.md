@@ -18,6 +18,10 @@ Other OS:
 Usage:
 - See help link in application
 
+Debug:
+- Make sure your history section is "Events Only"
+- Make sure you had enough time for history to expand - this can take several minutes with a long history
+
 TODO List:
 
 - Global stats
