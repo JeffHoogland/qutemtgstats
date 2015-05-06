@@ -59,6 +59,7 @@ class PasteWindow(QDialog, Ui_Paste):
                 eventId = self.rawData[startingRow+EventID].split(":")[1].lstrip()
                 if eventId not in self.rent.eventData:
                     #print eventId
+                    #print startingRow
                     eventPlace = self.rawData[startingRow+EventPlace].split(":")[1].lstrip()
                     eventType = self.rawData[startingRow+EventType].split(":")[1].lstrip()
                     

@@ -28,6 +28,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.eventData = {}
         self.opponentData = {}
+        self.globalStats = {"Wins":0, "Losses":0, "Draws":0, "Matches":0, "Win Percent": 0.0}
         self.filteredEventData = []
         
         self.statsEvents = {}
@@ -56,6 +57,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.opponentListWindow = OpponentListWindow( self )
         self.filtersWindow = FiltersWindow( self )
         
+        self.statsFrame.hide()
+        self.listFrame.hide()
+        self.adjustSize()
+        
         self.statsReset()
         self.assignWidgets()
         
@@ -63,10 +68,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.eventData = dict(self.eventData.items() + dataDict.items())
         self.updateGUI()
         self.dataLoaded = True
-        self.statsFrame.setEnabled(True)
-        self.listFrame.setEnabled(True)
         self.saveDataButton.setEnabled(True)
         self.dataLoadedLabel.setText('<html><head/><body><p align="center"><span style=" font-size:14pt; font-style:italic;">Data Loaded</span></p></body></html>')
+        self.statsFrame.show()
+        self.listFrame.show()
+        self.adjustSize()
         self.messageBox( "Data successfully imported." )
     
     def messageBox( self, ourMessage, ourTitle="Qute Confirm" ):
@@ -112,6 +118,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def updateFilteredData( self ):
         self.filteredEventData = []
         self.opponentData = {}
+        self.globalStats = {"Wins":0, "Losses":0, "Draws":0, "Matches":0, "Win Percent": 0.0}
         self.filtersCheck()
         self.statsReset()
         
@@ -154,8 +161,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.statsDecks[tp]["Matches"] > 0:
                 self.statsDecks[tp]["Win Percent"] = float(self.statsDecks[tp]["Wins"]) / (self.statsDecks[tp]["Wins"]+self.statsDecks[tp]["Losses"]) * 100
         
+        #Loop through all the events that meet our filters and get the total data
+        for ourEvent in self.filteredEventData:
+            ourEvent = self.eventData[ourEvent]
+            
+            #Add stats data
+            for tp in ["Wins", "Losses", "Draws", "Matches"]:
+                self.globalStats[tp] += ourEvent[tp]
+        
+        self.globalStats["Win Percent"] = float(self.globalStats["Wins"]) / (self.globalStats["Wins"]+self.globalStats["Losses"]) * 100
+        
     def updateGUI( self ):
         self.updateFilteredData()
+        
+        #Update global stats text on the main window
+        self.overallLabel.setText('<html><head/><body><p><span style=" font-weight:600;">Overall Record:</span> %s-%s-%s </p></body></html>'%(self.globalStats["Wins"], self.globalStats["Losses"], self.globalStats["Draws"]))
+        self.totalMatchesLabel.setText('<html><head/><body><p><span style=" font-weight:600;">Total Matches:</span> %s</p></body></html>'%self.globalStats["Matches"])
+        self.winPercentLabel.setText('<html><head/><body><p><span style=" font-weight:600;">Win Percent:</span> %.2f</p></body></html>'%self.globalStats["Win Percent"])
+        
         self.eventListWindow.updateGUI()
         self.opponentListWindow.updateGUI()
         self.eventStatsWindow.updateGUI()
@@ -226,6 +249,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.byDeckButton.clicked.connect(lambda: self.deckStatsWindow.show())
         self.listEventButton.clicked.connect(lambda: self.eventListWindow.show())
         self.listOpponentButton.clicked.connect(lambda: self.opponentListWindow.show())
+        self.adjustFiltersButton.clicked.connect(lambda: self.filtersWindow.show())
         self.saveDataButton.clicked.connect(self.savePressed)
         self.loadFromFileButton.clicked.connect(self.loadPressed)
 
