@@ -20,7 +20,7 @@ class FormatStatsWindow(QDialog, Ui_FormatStats):
         self.frames.clear()
 
         for ourFormat in self.rent.selectedFormats:
-            if ourFormat != "Blank":
+            if ourFormat != "Blank" and self.rent.statsFormats[ourFormat]["Matches"] > 0:
                 #Each entry is a list with the first being a QFrame object, the second being a QVBoxLayout object, and 3-6 being QLabels
                 self.frames[ourFormat] = []
                 self.frames[ourFormat].append(QFrame(self.scrollAreaWidgetContents))

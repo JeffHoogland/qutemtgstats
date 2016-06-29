@@ -20,7 +20,7 @@ class EventStatsWindow(QDialog, Ui_EventStats):
         self.frames.clear()
 
         for ourEvent in self.rent.selectedEvents:
-            if ourEvent != "Blank":
+            if ourEvent != "Blank" and self.rent.statsEvents[ourEvent]["Matches"]:
                 #Each entry is a list with the first being a QFrame object, the second being a QVBoxLayout object, and 3-6 being QLabels
                 self.frames[ourEvent] = []
                 self.frames[ourEvent].append(QFrame(self.scrollAreaWidgetContents))

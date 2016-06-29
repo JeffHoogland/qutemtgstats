@@ -44,7 +44,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.decksList =    ["Blank"]
         
         self.dates = {  "starting":"1991-01-01",
-                        "ending":"2015-12-31" }
+                        "ending":"2030-12-31" }
         
         #Create our sub-window objects
         self.exportWindow = ExportStatsWindow( self )

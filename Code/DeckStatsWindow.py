@@ -20,7 +20,7 @@ class DeckStatsWindow(QDialog, Ui_DeckStats):
         self.frames.clear()
 
         for deck in self.rent.selectedDecks:
-            if deck != "Blank":
+            if deck != "Blank" and self.rent.statsDecks[deck]["Matches"] > 0:
                 #Each entry is a list with the first being a QFrame object, the second being a QVBoxLayout object, and 3-6 being QLabels
                 self.frames[deck] = []
                 self.frames[deck].append(QFrame(self.scrollAreaWidgetContents))
