@@ -1,5 +1,6 @@
 import os
 import csv
+import sys
 
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -8,7 +9,11 @@ from ui_EventList import Ui_EventList
 
 from EventWindow import EventWindow
 
-from builtins import str as text
+if sys.version_info >= (3,0):
+    from builtins import str as text
+else:
+    def text( data ):
+        return unicode( data )
 
 class EventListWindow(QDialog, Ui_EventList):
     def __init__(self, parent):

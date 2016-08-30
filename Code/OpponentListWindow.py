@@ -1,12 +1,17 @@
 import os
 import csv
+import sys
 
 from PySide.QtGui import *
 from PySide.QtCore import *
 
 from ui_OpponentList import Ui_OpponentList
 
-from builtins import str as text
+if sys.version_info >= (3,0):
+    from builtins import str as text
+else:
+    def text( data ):
+        return unicode( data )
 
 class OpponentListWindow(QDialog, Ui_OpponentList):
     def __init__(self, parent):
