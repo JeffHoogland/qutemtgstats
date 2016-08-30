@@ -50,12 +50,12 @@ class EventListWindow(QDialog, Ui_EventList):
         self.hide()
 
     def eventSelected( self, ourEvent, ourColumn ):
-		eventId = ourEvent.text(0)
-		
-		if not self.rent.eventData[eventId]["WindowObject"]:
-			self.rent.eventData[eventId]["WindowObject"] = EventWindow( self.rent, eventId )
-			
-		self.rent.eventData[eventId]["WindowObject"].show()
+        eventId = ourEvent.text(0)
+
+        if not self.rent.eventData[eventId]["WindowObject"]:
+            self.rent.eventData[eventId]["WindowObject"] = EventWindow( self.rent, eventId )
+                
+        self.rent.eventData[eventId]["WindowObject"].show()
 
     def exportStatsPressed( self ):
         filename = QFileDialog.getSaveFileName(self, 'Selection a location to save your data to:', os.getenv('HOME'), 'CSV Files (*.csv)') #returns (fileName, selectedFilter) 

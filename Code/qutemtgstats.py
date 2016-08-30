@@ -76,10 +76,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.messageBox( "Data successfully imported." )
     
     def messageBox( self, ourMessage, ourTitle="Qute Confirm" ):
-		msgBox = QMessageBox()
-                msgBox.setWindowTitle(ourTitle)
-		msgBox.setText(ourMessage)
-		msgBox.exec_()
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle(ourTitle)
+        msgBox.setText(ourMessage)
+        msgBox.exec_()
     
     def statsReset( self ):
         for ourEvent in self.selectedEvents:
