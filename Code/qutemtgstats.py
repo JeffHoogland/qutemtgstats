@@ -2,7 +2,10 @@ import sys
 import os
 import platform
 import datetime
-import cPickle as pickle
+if sys.version_info >= (3,0):
+    import pickle
+else:
+    import cPickle as pickle
 
 from PySide.QtGui import *
 from PySide.QtCore import *
@@ -65,7 +68,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.assignWidgets()
         
     def dataLoadedSuccessful( self, dataDict ):
-        self.eventData = dict(self.eventData.items() + dataDict.items())
+        self.eventData.update(dataDict)
         self.updateGUI()
         self.dataLoaded = True
         self.saveDataButton.setEnabled(True)
@@ -76,10 +79,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.messageBox( "Data successfully imported." )
     
     def messageBox( self, ourMessage, ourTitle="Qute Confirm" ):
-		msgBox = QMessageBox()
-                msgBox.setWindowTitle(ourTitle)
-		msgBox.setText(ourMessage)
-		msgBox.exec_()
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle(ourTitle)
+        msgBox.setText(ourMessage)
+        msgBox.exec_()
     
     def statsReset( self ):
         for ourEvent in self.selectedEvents:
