@@ -6,6 +6,8 @@ from PySide.QtCore import *
 
 from ui_OpponentList import Ui_OpponentList
 
+from builtins import str as text
+
 class OpponentListWindow(QDialog, Ui_OpponentList):
     def __init__(self, parent):
         super(OpponentListWindow, self).__init__(parent)
@@ -22,10 +24,10 @@ class OpponentListWindow(QDialog, Ui_OpponentList):
         for opponent in self.rent.opponentData:
             opponentItem =  TreeWidgetItem(self.opponentTree)
             opponentItem.setText(0, opponent)
-            opponentItem.setText(1, unicode(self.rent.opponentData[opponent]["Win"]))
-            opponentItem.setText(2, unicode(self.rent.opponentData[opponent]["Loss"]))
-            opponentItem.setText(3, unicode(self.rent.opponentData[opponent]["Draw"]))
-            opponentItem.setText(4, unicode(self.rent.opponentData[opponent]["Win"]+self.rent.opponentData[opponent]["Loss"]+self.rent.opponentData[opponent]["Draw"]))
+            opponentItem.setText(1, text(self.rent.opponentData[opponent]["Win"]))
+            opponentItem.setText(2, text(self.rent.opponentData[opponent]["Loss"]))
+            opponentItem.setText(3, text(self.rent.opponentData[opponent]["Draw"]))
+            opponentItem.setText(4, text(self.rent.opponentData[opponent]["Win"]+self.rent.opponentData[opponent]["Loss"]+self.rent.opponentData[opponent]["Draw"]))
             
             self.opponentTree.addTopLevelItem(opponentItem)
             self.csvList.append([opponent, self.rent.opponentData[opponent]["Win"], self.rent.opponentData[opponent]["Loss"],

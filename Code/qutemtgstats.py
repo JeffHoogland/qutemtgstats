@@ -68,7 +68,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.assignWidgets()
         
     def dataLoadedSuccessful( self, dataDict ):
-        self.eventData = dict(self.eventData.items() + dataDict.items())
+        self.eventData.update(dataDict)
         self.updateGUI()
         self.dataLoaded = True
         self.saveDataButton.setEnabled(True)
