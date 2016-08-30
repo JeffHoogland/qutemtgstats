@@ -55,6 +55,10 @@ class PasteWindow(QDialog, Ui_Paste):
                     endingRow = eventBreaks[eventBreaks.index(event) + 1]
                 else:
                     endingRow = len(self.rawData)
+
+                if endingRow - startingRow < EventHistory:
+                    # ignore Achievments
+                    continue
                 
                 eventId = self.rawData[startingRow+EventID].split(":")[1].lstrip()
                 if eventId not in self.rent.eventData:
