@@ -107,7 +107,7 @@ class PasteWindow(QDialog, Ui_Paste):
             self.hide()
             self.rent.dataLoadedSuccessful(self.eventData)
         except Exception as inst:
-            print "Hit error: %s"%traceback.format_exc()
+            print("Hit error: %s"%traceback.format_exc())
             self.rent.messageBox( "<center><b>Something went wrong!</b></center><br><br> Please report the following error message on GitHub along with the data used:<br><br> <i>%s</i>"%traceback.format_exc(), "Qute Error" )
 
     def cancelPressed( self ):

@@ -2,7 +2,10 @@ import sys
 import os
 import platform
 import datetime
-import cPickle as pickle
+if sys.version_info >= (3,0):
+    import pickle
+else:
+    import cPickle as pickle
 
 from PySide.QtGui import *
 from PySide.QtCore import *
